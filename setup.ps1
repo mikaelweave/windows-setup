@@ -34,8 +34,8 @@ function Ask-Command {
 
 ## INSTALL PACKAGE MANAGERS
 Write-Host "Installing Scoop and Choco..."
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 ## INSTALL APPS THROUGH SCOOP
 Write-Host "Installing basic apps through scoop (cmder, curl, docker)..."
