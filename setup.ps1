@@ -27,7 +27,7 @@ function Ask-Command {
             $answer = Read-Host "Yes or No"
         }
         if ($answer -eq "yes") {
-            & $command
+            Invoke-Expression $command
         }
     }
   }
@@ -77,6 +77,13 @@ $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\startup.cmd.lnk")
 $Shortcut.TargetPath = $env:USERPROFILE + "\bin\startup.cmd"
 $Shortcut.Save()
+
+# Fixing folder options
+$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+Set-ItemProperty $key Hidden 1
+Set-ItemProperty $key HideFileExt 0
+#Set-ItemProperty $key ShowSuperHidden 1
+Stop-Process -processname explorer
 
 # Install visual studio
 Invoke-WebRequest -Uri "https://aka.ms/vs/15/release/vs_enterprise.exe" -UseBasicParsing -OutFile "vs_enterprise.exe"
