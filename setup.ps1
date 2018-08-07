@@ -66,11 +66,11 @@ Ask-Command "Do you want to install postman?" "choco install postman -y"
 Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
 
 # Startup script setup
-mkdir $env:USERPROFILE + "/bin/"
-Copy-Item ".\startup.cmd" -Destination $env:USERPROFILE + "/bin/"
+mkdir $($env:USERPROFILE + "\bin")
+Copy-Item $($PSScriptRoot + "\startup.cmd") -Destination $($env:USERPROFILE + "/bin/")
 # AutoHotKey setup :) 
-mkdir $env:USERPROFILE + "/bin/AutoHotKey/"
-Copy-Item "\AutoHotKey" -Destination $env:USERPROFILE + "/bin/AutoHotKey/" -Recurse
+mkdir $($env:USERPROFILE + "\bin\AutoHotKey\")
+Copy-Item $($PSScriptRoot + "\AutoHotKey") -Destination $($env:USERPROFILE + "\bin\AutoHotKey\") -Recurse
 
 # Make the startup script...well..startup automatically
 $WScriptShell = New-Object -ComObject WScript.Shell
@@ -79,7 +79,7 @@ $Shortcut.TargetPath = $env:USERPROFILE + "\bin\startup.cmd"
 $Shortcut.Save()
 
 # Install visual studio
-Invoke-WebRequest -Uri "https://aka.ms/vs/15/release/vs_enterprise.exe"
+Invoke-WebRequest -Uri "https://aka.ms/vs/15/release/vs_enterprise.exe" -UseBasicParsing -OutFile "vs_enterprise.exe"
 .\vs_enterprise.exe
 Write-Host 'Popping up VS Installer';
 Write-Host -NoNewLine 'Press any key to continue once done...';

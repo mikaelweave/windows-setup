@@ -6,9 +6,9 @@ Just copy the code block and paste it into a new PowerShell window RUN AS ADMIN
 
 ```
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-cd $($env:USERPROFILE + "Downloads")
+cd $($env:USERPROFILE + "\Downloads")
 Invoke-WebRequest -Uri "https://github.com/mikaelsnavy/windows-setup/archive/master.zip" -OutFile "windows-setup.zip"
 Expand-Archive -LiteralPath "windows-setup.zip" -DestinationPath "windows-setup\"
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-windows-setup\setup.ps1
+windows-setup\windows-setup-master\setup.ps1
 ```
