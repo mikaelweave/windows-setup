@@ -32,6 +32,9 @@ function Ask-Command {
     }
   }
 
+## REMOVE ALL THE BUILD IN STUFF
+Ask-Command "Do you want to uninstall pre-installed apps?" "Get-AppxPackage -AllUsers | Remove-AppxPackage"
+
 ## INSTALL PACKAGE MANAGERS
 Write-Host "Installing Scoop and Choco..."
 Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
@@ -59,15 +62,14 @@ choco install 7zip -y
 choco install zoomit -y
 choco install autohotkey -y
 
-Ask-Command "Do you want to install MS teams?" "choco install microsoft-teams -y"
-Ask-Command "Do you want to install postman?" "choco install postman -y"
+ Ask-Command "Do you want to install postman?" "choco install postman -y"
 
 # Startup script setup
-mkdir ~/bin/
-Copy-Item ".\startup.cmd" -Destination "~/bin/"
+mkdir $env:USERPROFILE + "/bin/"
+Copy-Item ".\startup.cmd" -Destination $env:USERPROFILE + "/bin/"
 # AutoHotKey setup :) 
-mkdir ~/bin/AutoHotKey/
-Copy-Item "\AutoHotKey" -Destination "~/bin/AutoHotKey/" -Recurse
+mkdir $env:USERPROFILE + "/bin/AutoHotKey/"
+Copy-Item "\AutoHotKey" -Destination $env:USERPROFILE + "/bin/AutoHotKey/" -Recurse
 
 # Make the startup script...well..startup automatically
 $WScriptShell = New-Object -ComObject WScript.Shell

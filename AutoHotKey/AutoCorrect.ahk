@@ -1,4 +1,4 @@
-;------------------------------------------------------------------------------
+﻿;------------------------------------------------------------------------------
 ; CHANGELOG:
 ;
 ; 2011-03-21 to 2012-01-24:  See readme.txt
@@ -65,7 +65,7 @@
 #SingleInstance force
 
 ; Custom icon from http://www.famfamfam.com/lab/icons/silk/preview.php
-;Menu, Tray, Icon, text_replace.ico
+; Menu, Tray, Icon, text_replace.ico
 
 
 ;------------------------------------------------------------------------------
