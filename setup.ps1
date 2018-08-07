@@ -62,7 +62,8 @@ choco install 7zip -y
 choco install zoomit -y
 choco install autohotkey -y
 
- Ask-Command "Do you want to install postman?" "choco install postman -y"
+Ask-Command "Do you want to install postman?" "choco install postman -y"
+Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
 
 # Startup script setup
 mkdir $env:USERPROFILE + "/bin/"
