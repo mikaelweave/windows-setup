@@ -32,16 +32,38 @@ function Ask-Command {
     }
   }
 
-# Run windows cleaner if desired
+######################################################
+## Windows Cleanup
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Windows Cleanup" -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+
 Ask-Command "Do you want to cleanup Windows?" $(". " + $PSScriptRoot + "\reclaimWindows10.ps1")
 
+Write-Host 'Done!!!';
+Write-Host ""
+
+######################################################
 ## INSTALL PACKAGE MANAGERS
-Write-Host "Installing Scoop and Choco..."
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Installing Scoop and Choco..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+
 Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
+Write-Host 'Done!!!';
+Write-Host ""
+
+######################################################
 ## INSTALL APPS THROUGH SCOOP
-Write-Host "Installing basic apps through scoop (cmder, curl, docker, python)..."
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Installing basic apps through scoop (cmder, curl, docker, python)..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+
 scoop install cmder
 scoop install curl
 scoop install dotnet-sdk
@@ -52,8 +74,15 @@ scoop install docker
 Ask-Command "Do you want to install r?" "scoop install r"
 Ask-Command "Do you want to install rust?" "scoop install rust"
 
-## INSTALL APPS THROUGH CHOCO
-Write-Host "Installing apps through choco (Greenshot, git, ditto, vscode, microsoft teams, postman, 7-Zip, ZoomIt)..."
+Write-Host 'Done!!!';
+Write-Host ""
+
+######################################################
+# INSTALL APPS THROUGH CHOCO
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Installing apps through choco (Greenshot, git, ditto, vscode, microsoft teams, postman, 7-Zip, ZoomIt)..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
 choco install greenshot -y
 choco install git.install -y
 choco install ditto -y
@@ -65,6 +94,15 @@ choco install autohotkey -y
 Ask-Command "Do you want to install postman?" "choco install postman -y"
 Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
 
+Write-Host 'Done!!!';
+Write-Host ""
+
+######################################################
+# Autohotkey customization
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Installing AutoHotKey customization..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
 # Startup script setup
 mkdir $($env:USERPROFILE + "\bin")
 Copy-Item $($PSScriptRoot + "\startup.cmd") -Destination $($env:USERPROFILE + "/bin/")
@@ -77,30 +115,56 @@ $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\startup.cmd.lnk")
 $Shortcut.TargetPath = $env:USERPROFILE + "\bin\startup.cmd"
 $Shortcut.Save()
+Write-Host 'Done!!!';
+Write-Host ""
 
-# Install visual studio
+######################################################
+# Visual Studio 2017 Enterprise
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Opening Visual Studio 2017 Enterprise installer..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
 Invoke-WebRequest -Uri "https://aka.ms/vs/15/release/vs_enterprise.exe" -UseBasicParsing -OutFile "vs_enterprise.exe"
 .\vs_enterprise.exe
-Write-Host 'Popping up VS Installer';
+Write-Host 'Popping up VS Installer now!';
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+Write-Host ""
 
-# MANUAL STEP
-Write-Host "MANUAL STEP: Install setting sync for VSCode. Use gist ID 2fae7ab3b58333e6c065f070ece52867"
+######################################################
+# VS Code Setup (using setting sync)
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Install setting sync for VSCode..." -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+$oldPath = $(Convert-Path .)
+Set-Location "C:\Program Files\Microsoft VS Code\"
+& code --install-extension Shan.code-settings-sync
+Set-Location $oldPath
+Copy-Item $($PSScriptRoot + "\vscode-settings.json") -Destination $($env:USERPROFILE + "AppData\Roaming\Code\User\settings.json")
+
+Write-Host "VS Code Setting Sync installed. Please sync settings the next time you use Code."
+Write-Host ""
+
+######################################################
+# Notion
+######################################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "MANUAL STEP: Install Notion" -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "You can install notion from http://www.notion.so..."
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+Write-Host ""
 
-Write-Host "MANUAL STEP: Powershell tricks at https://gist.github.com/rkeithhill/60eaccf1676cf08dfb6f"
-Write-Host -NoNewLine 'Press any key to continue once done...';
-$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+###############################################
+# Windows Subsystem for Linux
+###############################################
+Write-Host "###############################################" -ForegroundColor White;
+Write-Host "Installing WSL. You will still need to install a Linux distro through the store (like Ubuntu)" -ForegroundColor White;
+Write-Host "###############################################" -ForegroundColor White;
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux;
 
-Write-Host "MANUAL STEP: Install Notion"
-Write-Host -NoNewLine 'Press any key to continue once done...';
-$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
-
-Write-Host "Installing WSL..."
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-
-Write-Host "Now reboot and install Ubuntu through the store..."
-Write-Host -NoNewLine 'Press any key to continue...';
+Write-Host "Script is complete! You should be (mostly) setup" -ForegroundColor Green;
+Write-Host -NoNewLine 'Press any key to exit...' -ForegroundColor Green;
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');

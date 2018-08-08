@@ -1,0 +1,16 @@
+{
+    "sync.gist": "2fae7ab3b58333e6c065f070ece52867",
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "sync.removeExtensions": true,
+    "sync.syncExtensions": true,
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastUpload": "",
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "editor.renderWhitespace": "all",
+    "git.autofetch": true
+}
