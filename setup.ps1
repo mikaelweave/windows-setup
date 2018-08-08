@@ -21,7 +21,7 @@ function Ask-Command {
     )
 
     process {
-        $answer = Read-Host $prompt + " (Yes or No)"
+        $answer = Read-Host $($prompt + " (Yes or No)")
         while("yes","no" -notcontains $answer)
         {
             $answer = Read-Host "Yes or No"
@@ -32,8 +32,8 @@ function Ask-Command {
     }
   }
 
-## REMOVE ALL THE BUILD IN STUFF
-Ask-Command "Do you want to uninstall pre-installed apps?" "Get-AppxPackage -AllUsers | Remove-AppxPackage"
+# Run windows cleaner if desired
+Ask-Command "Do you want to cleanup Windows?" $(". " + $PSScriptRoot + "\reclaimWindows10.ps1")
 
 ## INSTALL PACKAGE MANAGERS
 Write-Host "Installing Scoop and Choco..."
@@ -41,14 +41,14 @@ Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.s
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 ## INSTALL APPS THROUGH SCOOP
-Write-Host "Installing basic apps through scoop (cmder, curl, docker)..."
+Write-Host "Installing basic apps through scoop (cmder, curl, docker, python)..."
 scoop install cmder
 scoop install curl
 scoop install dotnet-sdk
+scoop install python
+scoop install docker
 
 # Optional installs
-Ask-Command "Do you want to install docker?" "scoop install docker"
-Ask-Command "Do you want to install python?" "scoop install python"
 Ask-Command "Do you want to install r?" "scoop install r"
 Ask-Command "Do you want to install rust?" "scoop install rust"
 
@@ -77,13 +77,6 @@ $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\startup.cmd.lnk")
 $Shortcut.TargetPath = $env:USERPROFILE + "\bin\startup.cmd"
 $Shortcut.Save()
-
-# Fixing folder options
-$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-Set-ItemProperty $key Hidden 1
-Set-ItemProperty $key HideFileExt 0
-#Set-ItemProperty $key ShowSuperHidden 1
-Stop-Process -processname explorer
 
 # Install visual studio
 Invoke-WebRequest -Uri "https://aka.ms/vs/15/release/vs_enterprise.exe" -UseBasicParsing -OutFile "vs_enterprise.exe"
