@@ -94,6 +94,15 @@ choco install autohotkey -y
 Ask-Command "Do you want to install postman?" "choco install postman -y"
 Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
 
+# Git config
+$oldPath = $(Convert-Path .)
+Set-Location "C:\Program Files\Git\cmd"
+$name = Read-Host 'What name do you want to use for git?'
+$email = Read-Host 'What email do you want to use for git?'
+git config --global user.name $name
+$ git config --global user.email $email
+Set-Location $oldPath
+
 Write-Host 'Done!!!';
 Write-Host ""
 
