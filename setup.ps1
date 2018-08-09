@@ -151,7 +151,10 @@ $file = $($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Prog
 Add-Content $file 'code --install-extension Shan.code-settings-sync'
 Add-Content $file 'del /f/q "%~0" | exit'
 
-Write-Host "VS Code Setting Sync will be installed on the next reboot. Please sync settings the next time you use Code."
+$settingsPath = $($PSScriptRoot + "\vscode-settings.json")
+Copy-Item $settingsPath -Destination $($env:USERPROFILE + "\AppData\Roaming\Code\User\settings.json")
+
+Write-Host "VS Code Setting Sync will be installed on the next reboot time you use Code."
 Write-Host ""
 
 ######################################################
