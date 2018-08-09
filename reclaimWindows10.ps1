@@ -2011,16 +2011,14 @@ function UninstallThirdPartyBloat {
         "flaregamesGmbH.RoyalRevolt2",
         "GAMELOFTSA.Asphalt8Airborne",
         "KeeperSecurityInc.Keeper",
-        "king.com.BubbleWitch3Saga",
-        "king.com.CandyCrushSodaSaga",
-        "king.com.BubbleWitch3Saga",
+        "king.com*",
         "PandoraMediaInc.29680B314EFC2",
         "SpotifyAB.SpotifyMusic",
         "WinZipComputing.WinZipUniversal",
         "XINGAG.XING",
-        "828B5831.HiddenCityMysteryofShadows",
-        "A278AB0D.DragonManiaLegends",
-        "Nordcurrent.CookingFever"
+        "*HiddenCityMysteryofShadows*",
+        "*DragonManiaLegends*",
+        "*CookingFever*"
     )
 
     # Remove each app in our list
