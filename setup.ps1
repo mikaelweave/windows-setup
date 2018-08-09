@@ -51,7 +51,14 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "Installing Scoop and Choco..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 
-Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
+if (Get-Command "scoop" -errorAction SilentlyContinue) {
+  Write-Host "scoop already installed, checking for updates"
+  scoop update scoop
+} else {
+    Invoke-Expression (new-object net.webclient).downloadstring('https://get.scoop.sh')
+}
+
+# choco installer is more forgiving :)
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 Write-Host 'Done!!!';
@@ -91,6 +98,7 @@ choco install 7zip -y
 choco install zoomit -y
 choco install autohotkey -y
 
+Ask-Command "Do you want to install Microsoft Teams?" "choco install microsoft-teams.install -y"
 Ask-Command "Do you want to install postman?" "choco install postman -y"
 Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
 
@@ -100,7 +108,7 @@ Set-Location "C:\Program Files\Git\cmd"
 $name = Read-Host 'What name do you want to use for git?'
 $email = Read-Host 'What email do you want to use for git?'
 git config --global user.name $name
-$ git config --global user.email $email
+git config --global user.email $email
 Set-Location $oldPath
 
 Write-Host 'Done!!!';
@@ -113,11 +121,10 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "Installing AutoHotKey customization..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 # Startup script setup
-mkdir $($env:USERPROFILE + "\bin")
-Copy-Item $($PSScriptRoot + "\startup.cmd") -Destination $($env:USERPROFILE + "/bin/")
+New-Item -ItemType Directory -Force -Path $($env:USERPROFILE + "\bin")
+Copy-Item $($PSScriptRoot + "\startup.cmd") -Destination $($env:USERPROFILE + "/bin/") -Force
 # AutoHotKey setup :) 
-mkdir $($env:USERPROFILE + "\bin\AutoHotKey\")
-Copy-Item $($PSScriptRoot + "\AutoHotKey") -Destination $($env:USERPROFILE + "\bin\") -Recurse
+Copy-Item $($PSScriptRoot + "\AutoHotKey") -Destination $($env:USERPROFILE + "\bin\") -Recurse -Force
 
 # Make the startup script...well..startup automatically
 $WScriptShell = New-Object -ComObject WScript.Shell
@@ -139,6 +146,7 @@ Write-Host 'Popping up VS Installer now!';
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 Write-Host ""
+Write-Host ""
 
 ######################################################
 # VS Code Setup (using setting sync)
@@ -147,12 +155,18 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "Install setting sync for VSCode..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 
+Write-Host "Launching VS Code to create temp files. Please close it and press any key to continue..."
+& "C:\Program Files\Microsoft VS Code\Code.exe" > $null
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+
 $file = $($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\setup_settings_sync.cmd")
+if (Test-Path $file) { Remove-Item $file }
 Add-Content $file 'code --install-extension Shan.code-settings-sync'
 Add-Content $file 'del /f/q "%~0" | exit'
 
 $settingsPath = $($PSScriptRoot + "\vscode-settings.json")
-Copy-Item $settingsPath -Destination $($env:USERPROFILE + "\AppData\Roaming\Code\User\settings.json")
+Write-Host "SETTINGS" $settingsPath
+Copy-Item $settingsPath -Destination $($env:USERPROFILE + "\AppData\Roaming\Code\User\settings.json") -Force
 
 Write-Host "VS Code Setting Sync will be installed on the next reboot time you use Code."
 Write-Host ""
@@ -166,6 +180,7 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "You can install notion from http://www.notion.so..."
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+Write-Host ""
 Write-Host ""
 
 ###############################################

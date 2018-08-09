@@ -1901,6 +1901,7 @@ Function UninstallMsftBloat {
         "Microsoft.OneConnect",
         "Microsoft.People",
         "Microsoft.Print3D",
+		"Microsoft.FreshPaint",
         "Microsoft.RemoteDesktop",
         "Microsoft.SkypeApp",
         "Microsoft.Wallet",
@@ -1911,9 +1912,6 @@ Function UninstallMsftBloat {
         "Microsoft.WindowsMaps",
         "Microsoft.WindowsPhone",
         "Microsoft.Windows.Photos",
-        "Microsoft.Windows.HolographicFirstRun",
-        "Microsoft.Windows.ParentalControls",
-        "Microsoft.Windows.PeopleExperienceHost",
         "Microsoft.WindowsSoundRecorder",
         "Microsoft.ZuneMusic",
         "Microsoft.ZuneVideo"
@@ -1950,6 +1948,7 @@ Function InstallMsftBloat {
         "Microsoft.MicrosoftStickyNotes",
         "Microsoft.MinecraftUWP",
         "Microsoft.MSPaint",
+		"Microsoft.FreshPaint",
         "Microsoft.NetworkSpeedTest",
         "Microsoft.Office.OneNote",
         "Microsoft.Office.Sway",
@@ -1966,9 +1965,6 @@ Function InstallMsftBloat {
         "Microsoft.WindowsMaps",
         "Microsoft.WindowsPhone",
         "Microsoft.Windows.Photos",
-        "Microsoft.Windows.HolographicFirstRun",
-        "Microsoft.Windows.ParentalControls",
-        "Microsoft.Windows.PeopleExperienceHost",
         "Microsoft.WindowsSoundRecorder",
         "Microsoft.ZuneMusic",
         "Microsoft.ZuneVideo"
@@ -2100,8 +2096,8 @@ Function DisableXboxFeatures {
 	Get-AppxPackage "Microsoft.XboxIdentityProvider" | Remove-AppxPackage -ErrorAction SilentlyContinue
 	Get-AppxPackage "Microsoft.XboxSpeechToTextOverlay" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.XboxGameOverlay" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.XboxGamingOverlay" | Remove-AppxPackage
     Get-AppxPackage "Microsoft.Xbox.TCUI" | Remove-AppxPackage
-    Get-AppxPackage "Microsoft.XboxGameCallableUI" | Remove-AppxPackage
 
 	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR")) {
@@ -2117,9 +2113,9 @@ Function EnableXboxFeatures {
 	Get-AppxPackage -AllUsers "Microsoft.XboxIdentityProvider" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.XboxSpeechToTextOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.XboxGameOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.XboxGamingOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.Xbox.TCUI" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
-    Get-AppxPackage -AllUsers "Microsoft.XboxGameCallableUI" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
-	
+   
     Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
 }
