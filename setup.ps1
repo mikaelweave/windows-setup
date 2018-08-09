@@ -117,7 +117,7 @@ mkdir $($env:USERPROFILE + "\bin")
 Copy-Item $($PSScriptRoot + "\startup.cmd") -Destination $($env:USERPROFILE + "/bin/")
 # AutoHotKey setup :) 
 mkdir $($env:USERPROFILE + "\bin\AutoHotKey\")
-Copy-Item $($PSScriptRoot + "\AutoHotKey") -Destination $($env:USERPROFILE + "\bin\AutoHotKey\") -Recurse
+Copy-Item $($PSScriptRoot + "\AutoHotKey") -Destination $($env:USERPROFILE + "\bin\") -Recurse
 
 # Make the startup script...well..startup automatically
 $WScriptShell = New-Object -ComObject WScript.Shell
@@ -146,13 +146,12 @@ Write-Host ""
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Install setting sync for VSCode..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
-$oldPath = $(Convert-Path .)
-Set-Location "C:\Program Files\Microsoft VS Code\"
-& code --install-extension Shan.code-settings-sync
-Set-Location $oldPath
-Copy-Item $($PSScriptRoot + "\vscode-settings.json") -Destination $($env:USERPROFILE + "AppData\Roaming\Code\User\settings.json")
 
-Write-Host "VS Code Setting Sync installed. Please sync settings the next time you use Code."
+$file = $($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\setup_settings_sync.cmd")
+Add-Content $file 'code --install-extension Shan.code-settings-sync'
+Add-Content $file 'del /f/q "%~0" | exit'
+
+Write-Host "VS Code Setting Sync will be installed on the next reboot. Please sync settings the next time you use Code."
 Write-Host ""
 
 ######################################################
