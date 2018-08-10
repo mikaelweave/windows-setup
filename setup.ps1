@@ -61,6 +61,10 @@ if (Get-Command "scoop" -errorAction SilentlyContinue) {
 # choco installer is more forgiving :)
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
+# Refresh env is usefull in many places :)
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force; Get-Help Update-SessionEnvironment -Full > $null
+Update-SessionEnvironment
+
 Write-Host 'Done!!!';
 Write-Host ""
 
@@ -68,10 +72,9 @@ Write-Host ""
 ## INSTALL APPS THROUGH SCOOP
 ######################################################
 Write-Host "###############################################" -ForegroundColor White;
-Write-Host "Installing basic apps through scoop (cmder, curl, docker, python)..." -ForegroundColor White;
+Write-Host "Installing basic apps through scoop (curl, docker, python)..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 
-scoop install cmder
 scoop install curl
 scoop install dotnet-sdk
 scoop install python
@@ -99,19 +102,27 @@ choco install zoomit -y
 choco install autohotkey -y
 
 Ask-Command "Do you want to install Microsoft Teams?" "choco install microsoft-teams.install -y"
+Ask-Command "Do you want to install Office365 (proplus)?" "choco install office365proplus -y"
 Ask-Command "Do you want to install postman?" "choco install postman -y"
 Ask-Command "Do you want to install Azure Storage Explorer?" "choco install microsoftazurestorageexplorer -y"
+Ask-Command "Do you want to install Cacher?" "choco install cacher -y"
+
+Update-SessionEnvironment
 
 # Git config
-$oldPath = $(Convert-Path .)
-Set-Location "C:\Program Files\Git\cmd"
-$name = Read-Host 'What name do you want to use for git?'
-$email = Read-Host 'What email do you want to use for git?'
-git config --global user.name $name
-git config --global user.email $email
-Set-Location $oldPath
+$answer = Read-Host $("Do you want to setup your git info? (Yes or No)")
+while("yes","no" -notcontains $answer)
+{
+    $answer = Read-Host "Yes or No"
+}
+if ($answer -eq "yes") {
+    $name = Read-Host 'What name do you want to use for git?'
+    $email = Read-Host 'What email do you want to use for git?'
+    git config --global user.name $name
+    git config --global user.email $email
+    Write-Host 'Done!!!';
+}
 
-Write-Host 'Done!!!';
 Write-Host ""
 
 ######################################################
@@ -148,6 +159,8 @@ $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 Write-Host ""
 Write-Host ""
 
+Update-SessionEnvironment
+
 ######################################################
 # VS Code Setup (using setting sync)
 ######################################################
@@ -159,16 +172,9 @@ Write-Host "Launching VS Code to create temp files. Please close it and press an
 & "C:\Program Files\Microsoft VS Code\Code.exe" > $null
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 
-$file = $($env:USERPROFILE + "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\setup_settings_sync.cmd")
-if (Test-Path $file) { Remove-Item $file }
-Add-Content $file 'code --install-extension Shan.code-settings-sync'
-Add-Content $file 'del /f/q "%~0" | exit'
+code --install-extension Shan.code-settings-sync
+Ask-Command "Do you want to copy templated VS Code settings?" $("Copy-Item " + $($PSScriptRoot + "\vscode-settings.json") + "-Destination " + $($env:USERPROFILE + "\AppData\Roaming\Code\User\settings.json") + "-Force")
 
-$settingsPath = $($PSScriptRoot + "\vscode-settings.json")
-Write-Host "SETTINGS" $settingsPath
-Copy-Item $settingsPath -Destination $($env:USERPROFILE + "\AppData\Roaming\Code\User\settings.json") -Force
-
-Write-Host "VS Code Setting Sync will be installed on the next reboot time you use Code."
 Write-Host ""
 
 ######################################################
