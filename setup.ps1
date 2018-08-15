@@ -194,6 +194,7 @@ Write-Host ""
 ###############################################
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing WSL. You will still need to install a Linux distro through the store (like Ubuntu)" -ForegroundColor White;
+Write-Host "Also checkout Arch install from here: https://github.com/yuk7/ArchWSL"- ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux;
 
