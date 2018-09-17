@@ -100,6 +100,8 @@ choco install vscode -y
 choco install 7zip -y
 choco install zoomit -y
 choco install autohotkey -y
+choco install Microsoft-Windows-Subsystem-Linux -source windowsfeatures -y
+choco install Microsoft-Hyper-V-All -source windowsFeatures -y
 
 Ask-Command "Do you want to install Microsoft Teams?" "choco install microsoft-teams.install -y"
 Ask-Command "Do you want to install Office365 (proplus)?" "choco install office365proplus -y"
@@ -183,21 +185,26 @@ Write-Host ""
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "MANUAL STEP: Install Notion" -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
-Write-Host "You can install notion from http://www.notion.so..."
+Write-Host "Popping up Edge to download/install notion";
+start microsoft-edge:https://www.notion.so/desktop
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 Write-Host ""
 Write-Host ""
 
 ###############################################
-# Windows Subsystem for Linux
+# Ubuntu WSL
 ###############################################
-Write-Host "###############################################" -ForegroundColor White;
-Write-Host "Installing WSL. You will still need to install a Linux distro through the store (like Ubuntu)" -ForegroundColor White;
-Write-Host "Also checkout Arch install from here: https://github.com/yuk7/ArchWSL"- ForegroundColor White;
-Write-Host "###############################################" -ForegroundColor White;
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux;
+.\ubuntu-wsl-setup.ps1
+
+###############################################
+# Arch WSL
+###############################################
+.\arch-wsl-setup.ps1
 
 Write-Host "Script is complete! You should be (mostly) setup" -ForegroundColor Green;
 Write-Host -NoNewLine 'Press any key to exit...' -ForegroundColor Green;
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+
+
+$($env:USERPROFILE + "\bin")
