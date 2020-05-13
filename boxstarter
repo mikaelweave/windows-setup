@@ -43,11 +43,12 @@ function CleanUpWindows {
 
     Invoke-WebRequest -Uri $cleanupScriptRepoZip -OutFile CleanUpWindows.zip -UseBasicParsing
     Expand-Archive -LiteralPath CleanupWindows.zip -Force
-    cd CleanupWindows/
+    cd CleanupWindows/Win10-Initial-Setup-Script-master/
     Invoke-WebRequest -Uri $cleanupScriptConfig -OutFile cleanupScriptConfig.preset -UseBasicParsing
 
-    $command = ".\Win10.ps1 –include  cleanupScriptConfig.preset"
-    Invoke-Expression $command
+    $argumentList = @("-include", "Win10.psm1", "-preset", "cleanupScriptConfig.preset")
+    $scriptPath = $(Get-Location).Path + "\Win10.ps1"
+    Invoke-Expression "& `"$scriptPath`" $argumentList"
 
     cd $oldPath
 }
@@ -58,10 +59,7 @@ function CleanUpWindows {
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Windows Cleanup" -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
-
-
-
-Ask-Command "Do you want to cleanup Windows?" $('. { iwr -useb ' + $cleanWindowsScriptUrl + '  } | iex;')
+Ask-Command "Do you want to cleanup Windows?" CleanUpWindows
 Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
