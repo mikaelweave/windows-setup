@@ -2,7 +2,7 @@
 Script and supporting files to setup a Windows dev computer to my liking 😊
 
 ## How to use from a fresh install
-Just copy the code block and paste it into a new command prompt
+Just copy the code block and paste it into a new command prompt. If this asks to Cleanup Windows multiple times after a reboot, say "No" after the first time.
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned 

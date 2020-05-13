@@ -84,6 +84,7 @@ Write-Host "Installing Developer Tools..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 cinst -y microsoft-windows-terminal
 cinst -y nodejs.install
+Update-SessionEnvironment
 npm install -g npm-windows-upgrade
 cinst -y curl
 cinst -y dotnetcore-sdk
