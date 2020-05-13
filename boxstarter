@@ -1,6 +1,7 @@
 # Path to boxstarter script that can be used to clean Windows
-$cleanWindowsScriptUrl = "https://raw.githubusercontent.com/mikaelsnavy/windows-setup/master/reclaimWindows10.ps1"
 $repoUrl = "https://github.com/mikaelsnavy/windows-setup.git"
+$cleanupScriptRepoZip = "https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/master.zip"
+$cleanupScriptConfig = "https://raw.githubusercontent.com/mikaelweave/windows-setup/master/cleanupWindows10Config.preset"
 
 function Ask-Command {
     <#
@@ -34,7 +35,22 @@ function Ask-Command {
             Invoke-Expression $command
         }
     }
-  }
+}
+
+function CleanUpWindows {
+    $oldPath = $(Get-Location).Path
+    cd ~/Downloads/
+
+    Invoke-WebRequest -Uri $cleanupScriptRepoZip -OutFile CleanUpWindows.zip -UseBasicParsing
+    Expand-Archive -LiteralPath CleanupWindows.zip -Force
+    cd CleanupWindows/
+    Invoke-WebRequest -Uri $cleanupScriptConfig -OutFile cleanupScriptConfig.preset -UseBasicParsing
+
+    $command = ".\Win10.ps1 –include  cleanupScriptConfig.preset"
+    Invoke-Expression $command
+
+    cd $oldPath
+}
 
 ######################################################
 ## Windows Cleanup
@@ -42,6 +58,9 @@ function Ask-Command {
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Windows Cleanup" -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
+
+
+
 Ask-Command "Do you want to cleanup Windows?" $('. { iwr -useb ' + $cleanWindowsScriptUrl + '  } | iex;')
 Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
@@ -70,7 +89,7 @@ if (Test-PendingReboot) { Invoke-Reboot }
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing Developer Tools..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
-cinst -y terminus --pre
+cinst -y microsoft-windows-terminal
 cinst -y nodejs.install
 npm install -g npm-windows-upgrade
 cinst -y curl
@@ -95,6 +114,7 @@ Write-Host "###############################################" -ForegroundColor Wh
 cinst -y office365proplus
 cinst -y microsoft-teams.install
 cinst -y GoogleChrome
+cinst -y microsoft-edge
 Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
@@ -104,10 +124,10 @@ if (Test-PendingReboot) { Invoke-Reboot }
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing Visual Studio..." -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
-cinst -y visualstudio2017enterprise
-cinst -y visualstudio2017-workload-netcoretools
-cinst -y visualstudio2017-workload-netweb
-cinst -y visualstudio2017-workload-node
+cinst -y visualstudio2019enterprise
+cinst -y visualstudio2019-workload-netcoretools
+cinst -y visualstudio2019-workload-netweb
+cinst -y visualstudio2019-workload-node
 Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
@@ -120,8 +140,6 @@ Set-TaskbarSmall
 Set-ExplorerOptions -showHidenFilesFoldersDrives -showProtectedOSFiles -showFileExtensions
 # Pin items to the task bar
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
-Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft Office\root\Office16\OUTLOOK.EXE"
-Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft Office\root\Office16\OUTLOOK.EXE"
 Install-ChocolateyPinnedTaskBarItem "${env:LOCALAPPDATA}\Microsoft\Teams\current\Teams.exe"
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
 # Clone git repo with extra setup files
@@ -177,10 +195,10 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "Installing Notion" -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Popping up Edge to download/install notion";
-$url = "https://desktop-release.notion-static.com/Notion%20Setup%200.3.0.exe"
-$outpath = "$env:USERPROFILE\Downloads\Notion Setup 0.3.0.exe"
+$url = "https://desktop-release.notion-static.com/Notion%20Setup%202.0.8.exe"
+$outpath = "$env:USERPROFILE\Downloads\Notion Setup.exe"
 Invoke-WebRequest -Uri $url -OutFile $outpath
-Start-Process -Filepath "$env:USERPROFILE\Downloads\Notion Setup 0.3.0.exe"
+Start-Process -Filepath "$env:USERPROFILE\Downloads\Notion Setup.exe"
 Write-Host -NoNewLine 'Press any key to continue once done...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
 Write-Host ""
