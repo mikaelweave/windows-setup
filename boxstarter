@@ -26,12 +26,12 @@ function Ask-Command {
     )
 
     process {
-        $answer = Read-Host $($prompt + " (Yes or No)")
-        while("yes","no" -notcontains $answer)
+        $answer = Read-Host $($prompt + " (Yes (-y) or No)")
+        while("yes","no","-y" -notcontains $answer)
         {
             $answer = Read-Host "Yes or No"
         }
-        if ($answer -eq "yes") {
+        if ($answer -ne "no") {
             Invoke-Expression $command
         }
     }
@@ -60,10 +60,8 @@ Write-Host "###############################################" -ForegroundColor Wh
 Write-Host "Windows Cleanup" -ForegroundColor White;
 Write-Host "###############################################" -ForegroundColor White;
 Ask-Command "Do you want to cleanup Windows?" CleanUpWindows
-Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
-if (Test-PendingReboot) { Invoke-Reboot }
 
 ######################################################
 # INSTALL APPS THROUGH CHOCO
@@ -78,11 +76,8 @@ cinst -y zoomit
 cinst -y autohotkey
 cinst -y Microsoft-Windows-Subsystem-Linux -source windowsfeatures
 cinst -y Microsoft-Hyper-V-All -source windowsFeatures
-Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
-if (Test-PendingReboot) { Invoke-Reboot }
-
 
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing Developer Tools..." -ForegroundColor White;
@@ -100,11 +95,8 @@ cinst -y azure-cli
 cinst -y azure-data-studio
 cinst -y vscode
 cinst -y git.install
-Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
-if (Test-PendingReboot) { Invoke-Reboot }
-
 
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing Productivity Tools..." -ForegroundColor White;
@@ -113,11 +105,8 @@ cinst -y office365proplus
 cinst -y microsoft-teams.install
 cinst -y GoogleChrome
 cinst -y microsoft-edge
-Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
-if (Test-PendingReboot) { Invoke-Reboot }
-
 
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing Visual Studio..." -ForegroundColor White;
@@ -126,10 +115,8 @@ cinst -y visualstudio2019enterprise
 cinst -y visualstudio2019-workload-netcoretools
 cinst -y visualstudio2019-workload-netweb
 cinst -y visualstudio2019-workload-node
-Write-Host 'Done!!! Rebooting if needed...';
 Write-Host ""
 Update-SessionEnvironment
-if (Test-PendingReboot) { Invoke-Reboot }
 
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Configuring Computer..." -ForegroundColor White;
@@ -159,7 +146,6 @@ if ($answer -eq "yes") {
 }
 Write-Host 'Done!!!';
 Write-Host ""
-
 
 Write-Host "###############################################" -ForegroundColor White;
 Write-Host "Installing AutoHotKey customization..." -ForegroundColor White;
