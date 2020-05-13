@@ -1,8 +1,8 @@
 # windows-setup
-Script and supporting files to setup a Windows dev computer to my liking 😊
+Script and supporting files to setup a Windows dev computer to my liking. 😊 To run this script, you have to understand what the functions do and what will be the implications for you if you run them. Some functions lower security, hide controls or uninstall applications. If you're not sure what the script does, do not attempt to run it!
 
 ## How to use from a fresh install
-Just copy the code block and paste it into a new command prompt. If this asks to Cleanup Windows multiple times after a reboot, say "No" after the first time.
+Just copy the code block and paste it into a new command prompt. If you get an error while installing asking for a reboot (especially around WSL), reboot and rerun the script.
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned 
@@ -12,5 +12,5 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 # Run Boxstarter script from this repo
 $cred=Get-Credential
-Install-BoxstarterPackage -PackageName https://raw.githubusercontent.com/mikaelsnavy/windows-setup/master/boxstarter
+Install-BoxstarterPackage -PackageName https://raw.githubusercontent.com/mikaelsnavy/windows-setup/master/boxstarter -DisableReboots
 ```
