@@ -41,8 +41,8 @@ if(Test-Path -Path "$env:USERPROFILE\bin\Arch\") {
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Get latest bundle
-$wslJson = Invoke-WebRequest 'https://api.github.com/repos/yuk7/ArchWSL/releases/latest' | ConvertFrom-Json;
-Invoke-WebRequest $("https://github.com/yuk7/ArchWSL/releases/download/$($wslJson.tag_name)/Arch.zip") -OutFile "$env:USERPROFILE\Downloads\Arch.zip";
+$wslJson = Invoke-WebRequest 'https://api.github.com/repos/yuk7/ArchWSL/releases/latest' -UseBasicParsing | ConvertFrom-Json;
+Invoke-WebRequest $("https://github.com/yuk7/ArchWSL/releases/download/$($wslJson.tag_name)/Arch.zip") -UseBasicParsing -OutFile "$env:USERPROFILE\Downloads\Arch.zip";
 
 # Extract Arch
 New-Item -ItemType Directory -Force -Path $($env:USERPROFILE + "\bin\Arch\")
