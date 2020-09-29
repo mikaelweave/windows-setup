@@ -89,7 +89,7 @@ npm install -g npm-windows-upgrade
 cinst -y curl
 cinst -y dotnetcore-sdk
 cinst -y python
-cinst -y docker
+cinst -y docker-desktop
 cinst -y docker-compose
 cinst -y microsoftazurestorageexplorer
 cinst -y azure-cli
