@@ -1,6 +1,6 @@
 # Path to boxstarter script that can be used to clean Windows
 $repoUrl = "https://github.com/mikaelsnavy/windows-setup.git"
-$cleanupScriptRepoZip = "https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/master.zip"
+$cleanupScriptRepoZip = "https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/3.10.zip"
 $cleanupScriptConfig = "https://raw.githubusercontent.com/mikaelweave/windows-setup/master/cleanupWindows10Config.preset"
 
 function Ask-Command {
