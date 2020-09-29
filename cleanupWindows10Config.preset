@@ -254,5 +254,5 @@ UninstallFaxAndScan           # InstallFaxAndScan
 # UnpinTaskbarIcons
 
 ### Auxiliary Functions ###
-WaitForKey
-Restart
+# WaitForKey
+# Restart
