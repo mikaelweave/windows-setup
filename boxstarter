@@ -43,7 +43,7 @@ function CleanUpWindows {
 
     Invoke-WebRequest -Uri $cleanupScriptRepoZip -OutFile CleanUpWindows.zip -UseBasicParsing
     Expand-Archive -LiteralPath CleanupWindows.zip -Force
-    cd CleanupWindows/Win10-Initial-Setup-Script-master/
+    cd CleanupWindows/Win10-Initial-Setup-Script-*/
     Invoke-WebRequest -Uri $cleanupScriptConfig -OutFile cleanupScriptConfig.preset -UseBasicParsing
 
     $argumentList = @("-include", "Win10.psm1", "-preset", "cleanupScriptConfig.preset")
