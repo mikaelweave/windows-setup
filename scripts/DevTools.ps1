@@ -1,18 +1,18 @@
-choco install -y git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'"
-choco install -y python
-choco install -y nodejs.install
+cinst git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'"
+cinst python
+cinst nodejs.install
 
-choco install -y vscode
-choco install -y visualstudio2022professional-preview --pre 
+cinst vscode
+cinst visualstudio2022professional-preview --pre 
 
-choco install -y 7zip.install
-choco install -y sysinternals
-choco install -y postman
+cinst 7zip.install
+cinst sysinternals
+cinst postman
 
-choco install -y azure-cli
+cinst azure-cli
 
-choco install -y sql-server-2019
-choco install -y azure-cosmosdb-emulator
+cinst sql-server-2019
+cinst azure-cosmosdb-emulator
 
 # Pin items to the task bar
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe"

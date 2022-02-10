@@ -1,1 +1,1 @@
-choco install -y wsl-ubuntu-2004
+cinst wsl-ubuntu-2004

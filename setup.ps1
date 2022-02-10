@@ -38,14 +38,14 @@ executeScript "WSLUbuntu.ps1";
 executeScript "WSLArch.ps1";
 executeScript "Docker.ps1";
 
-choco install -y visualstudio2017community --package-parameters="'--add Microsoft.VisualStudio.Component.Git'"
+cinst visualstudio2017community --package-parameters="'--add Microsoft.VisualStudio.Component.Git'"
 Update-SessionEnvironment #refreshing env due to Git install
 
 #--- UWP Workload and installing Windows Template Studio ---
-choco install -y visualstudio2017-workload-azure
-choco install -y visualstudio2017-workload-universal
-choco install -y visualstudio2017-workload-manageddesktop
-choco install -y visualstudio2017-workload-nativedesktop
+cinst visualstudio2017-workload-azure
+cinst visualstudio2017-workload-universal
+cinst visualstudio2017-workload-manageddesktop
+cinst visualstudio2017-workload-nativedesktop
 
 executeScript "WindowsTemplateStudio.ps1";
 executeScript "GetUwpSamplesOffGithub.ps1";
