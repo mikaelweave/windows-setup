@@ -2,3 +2,8 @@
 
 #--- Enable developer mode on the system ---
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
+
+# 
+$utcRegPath = 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation'
+New-Item -Path $utcRegPath
+New-ItemProperty -Path $utcRegPath -Name 'RealTimeIsUniversal' -Value 1 -PropertyType DWord
