@@ -4,6 +4,4 @@
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
 
 # 
-$utcRegPath = 'HKLM:\System\CurrentControlSet\Control\TimeZoneInformation'
-New-Item -Path $utcRegPath
-New-ItemProperty -Path $utcRegPath -Name 'RealTimeIsUniversal' -Value 1 -PropertyType DWord
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\TimeZoneInformation' -Name 'RealTimeIsUniversal' -Value 1 -PropertyType DWord
