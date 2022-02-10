@@ -6,7 +6,9 @@ Please fork this repository, and modify the scripts to your liking if you want t
 
 ## Install Links
 
-### Click [here](http://boxstarter.org/package/url?https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1) to run the setup script.
+### Click [here](https://boxstarter.org/package/nr/url??https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1) to run the setup script.
+
+
 
 
 ***
