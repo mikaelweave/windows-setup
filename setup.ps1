@@ -3,6 +3,8 @@
 # Common dev settings for desktop app development
 # Taken and modified from https://github.com/microsoft/windows-dev-box-setup-scripts/blob/ee2a2cf65bfe76b915bf02d3e5475e7dccc51aa8/dev_app.ps1
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 Disable-UAC
 
 # Get the base URI path from the ScriptToCall value
