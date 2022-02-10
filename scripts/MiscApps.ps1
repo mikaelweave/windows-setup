@@ -1,6 +1,6 @@
 #cinst ditto
-cinst autohotkey
-cinst greenshot
-cinst zoomit
-cinst dropbox
-cinst notion
+cinst autohotkey --cacheLocation="C:\temp"
+cinst greenshot --cacheLocation="C:\temp"
+cinst zoomit --cacheLocation="C:\temp"
+cinst dropbox --cacheLocation="C:\temp"
+cinst notion --cacheLocation="C:\temp"

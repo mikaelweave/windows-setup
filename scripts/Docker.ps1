@@ -2,5 +2,5 @@
 
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
 RefreshEnv
-cinst docker-desktop
-cinst vscode-docker
+cinst docker-desktop --cacheLocation="C:\temp"
+cinst vscode-docker --cacheLocation="C:\temp"

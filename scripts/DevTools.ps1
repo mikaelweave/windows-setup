@@ -1,18 +1,18 @@
-cinst git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'"
-cinst python
-cinst nodejs.install
+cinst git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'" --cacheLocation="C:\temp"
+cinst python --cacheLocation="C:\temp"
+cinst nodejs.install --cacheLocation="C:\temp"
 
-cinst vscode
-cinst visualstudio2022professional-preview --pre 
+cinst vscode --cacheLocation="C:\temp"
+cinst visualstudio2022professional-preview --pre --cacheLocation="C:\temp"
 
-cinst 7zip.install
-cinst sysinternals
-cinst postman
+cinst 7zip.install --cacheLocation="C:\temp"
+cinst sysinternals --cacheLocation="C:\temp"
+cinst postman --cacheLocation="C:\temp"
 
-cinst azure-cli
+cinst azure-cli --cacheLocation="C:\temp"
 
-cinst sql-server-2019
-cinst azure-cosmosdb-emulator
+cinst sql-server-2019 --cacheLocation="C:\temp"
+cinst azure-cosmosdb-emulator --cacheLocation="C:\temp"
 
 # Pin items to the task bar
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe"

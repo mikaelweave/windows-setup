@@ -59,6 +59,12 @@ $applicationList = @(
 	"*.EclipseManager"
 	"ActiproSoftwareLLC.562882FEEB491" # Code Writer
 	"*.AdobePhotoshopExpress"
+	"*Xbox*"
+	"*Disney*"
+	"*Clipchamp*"
+	"Prime*"
+	"*TikTok*"
+	"*Facebook*"
 );
 
 foreach ($app in $applicationList) {

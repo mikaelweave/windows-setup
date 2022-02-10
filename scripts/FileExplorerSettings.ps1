@@ -16,4 +16,15 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name MMTaskbarMode -Value 2
 
 # Install files because...it's dope
-cinst files
+
+#Enable TLS 1.2 for this session in-case disabled on machine
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+#Install NuGet Package Provider
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+#Install Package Provider Source
+Register-PackageSource -provider NuGet -name nugetRepository -location https://www.nuget.org/api/v2
+#Install Prerequisites for WinGet
+Install-Package Microsoft.UI.Xaml -Force
+
+cinst files --cacheLocation="C:\temp"
