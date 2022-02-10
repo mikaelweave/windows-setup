@@ -1,0 +1,1 @@
+choco install -y wsl-ubuntu-2004

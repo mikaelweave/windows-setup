@@ -63,13 +63,13 @@ $archUser = Read-Host -Prompt 'What do you want your Arch user name to be?'
 & "$env:USERPROFILE\bin\Arch\Arch.exe" run "sed -i -e 's/^/#/' /etc/pacman.d/mirrorlist"
 & "$env:USERPROFILE\bin\Arch\Arch.exe" run 'echo "Server = http://ftp.osuosl.org/pub/archlinux/$repo/os/$arch" >> /etc/pacman.d/mirrorlist'
 
-# Install packer 
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'mkdir packer-git && cd packer-git'
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'wget https://raw.githubusercontent.com/gavinhungry/pkgbuild/master/packer-git/PKGBUILD'
+# Install yay (AUR Helper)
+& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'mkdir yay && cd yay'
+& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay'
 & "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $archUser
 & "$env:USERPROFILE\bin\Arch\Arch.exe" run  'makepkg -Acs'
 & "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $root
-pacman -U packer-git-*
+pacman -U yay*
 
 # LAST THING - Change the default user to not root
 & "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $archUser

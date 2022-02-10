@@ -1,7 +1,6 @@
 ; #These are a few of my favorite things
 #Include %A_ScriptDir%\autoCorrect.ahk
 #Include %A_ScriptDir%\alwaysOnTop.ahk
-#Include %A_ScriptDir%\emoji.ahk
 
 ; ##### Program Killer #####
 ^!k:: Run %ProgramFiles%\AutoHotkey\Kill.exe 

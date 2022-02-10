@@ -1,11 +1,17 @@
-﻿;------------------------------------------------------------------------------
-; CHANGELOG:
-;
-; 2011-03-21 to 2012-01-24:  See readme.txt
-;
+﻿; c = case sensitive
+; c1 = ignore the case that was typed, always use the same case for output
+; * = immediate change (no need for space, period, or enter)
+; ? = triggered even when the character typed immediately before it is alphanumeric
+; r = raw output
+
+;------------------------------------------------------------------------------
 ; Taken with love from :)
 ; https://gist.github.com/endolith/876629
-; 
+;
+; CHANGELOG:
+;
+; 2011-03-21 and after:  See readme.md
+;
 ; Sep 13 2007: Added more misspellings.
 ;              Added fix for -ign -> -ing that ignores words like "sign".
 ;              Added word beginnings/endings sections to cover more options.
@@ -13,30 +19,30 @@
 ; Feb 28 2007: Added other common misspellings based on MS Word AutoCorrect.
 ;              Added optional auto-correction of 2 consecutive capital letters.
 ; Sep 24 2006: Initial release by Jim Biancolo (http://www.biancolo.com)
-; 
+;
 ; INTRODUCTION
-; 
+;
 ; This is an AutoHotKey script that implements AutoCorrect against several
 ; "Lists of common misspellings":
-; 
+;
 ; This does not replace a proper spellchecker such as in Firefox, Word, etc.
 ; It is usually better to have uncertain typos highlighted by a spellchecker
 ; than to "correct" them incorrectly so that they are no longer even caught by
 ; a spellchecker: it is not the job of an autocorrector to correct *all*
 ; misspellings, but only those which are very obviously incorrect.
-; 
+;
 ; From a suggestion by Tara Gibb, you can add your own corrections to any
 ; highlighted word by hitting Win+A. These will be added to a separate file,
 ; so that you can safely update this file without overwriting your changes.
-; 
+;
 ; Some entries have more than one possible resolution (achive->achieve/archive)
 ; or are clearly a matter of deliberate personal writing style (wanna, colour)
-; 
+;
 ; These have been placed at the end of this file and commented out, so you can
 ; easily edit and add them back in as you like, tailored to your preferences.
-; 
+;
 ; SOURCES
-; 
+;
 ; http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
 ; http://en.wikipedia.org/wiki/Wikipedia:Typo
 ; Microsoft Office autocorrect list
@@ -44,9 +50,9 @@
 ; OpenOffice autocorrect list
 ; TextTrust press release
 ; User suggestions.
-; 
+;
 ; CONTENTS
-; 
+;
 ;   Settings
 ;   AUto-COrrect TWo COnsecutive CApitals (commented out by default)
 ;   Win+H code
@@ -65,7 +71,7 @@
 #SingleInstance force
 
 ; Custom icon from http://www.famfamfam.com/lab/icons/silk/preview.php
-; Menu, Tray, Icon, text_replace.ico
+Menu, Tray, Icon, text_replace.ico
 
 
 ;------------------------------------------------------------------------------
@@ -210,7 +216,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :?:;ve::'ve
 ::sice::since  ; Must precede the following line!
 :?:sice::sive
-:?:t eh:: the   ; converts "but eh" to "bu the"
+;:?:t eh:: the   ; converts "but eh" to "bu the"
 :?:t hem:: them
 
 
@@ -313,7 +319,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ; Accented English words, from, amongst others,
 ; http://en.wikipedia.org/wiki/List_of_English_words_with_diacritics
 ; I have included all the ones compatible with reasonable codepages, and placed
-; those that may often not be accented either from a clash with an unaccented 
+; those that may often not be accented either from a clash with an unaccented
 ; word (resume), or because the unaccented version is now common (cafe).
 ;------------------------------------------------------------------------------
 ::aesop::Æsop
@@ -615,18 +621,25 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::avengence::a vengeance
 ::adbandon::abandon
 ::abandonned::abandoned
+::abbreviatoin::abbreviation
 ::aberation::aberration
 ::aborigene::aborigine
 ::abortificant::abortifacient
 ::abbout::about
+::abot::about
 ::abotu::about
+::abuot::about
+::aobut::about
 ::baout::about
+::bouat::about
 ::abouta::about a
+::abou tit::about it
 ::aboutit::about it
 ::aboutthe::about the
 ::abscence::absence
 ::absense::absence
 ::abcense::absense
+::absolutley::absolutely
 ::absolutly::absolutely
 ::asorbed::absorbed
 ::absorbsion::absorption
@@ -641,7 +654,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::acadamy::academy
 ::accademy::academy
 ::accelleration::acceleration
+::acceotable::acceptable
 ::acceptible::acceptable
+::accetpable::acceptable
 ::acceptence::acceptance
 ::accessable::accessible
 ::accension::accession
@@ -650,6 +665,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::accidant::accident
 ::accidentaly::accidentally
 ::accidently::accidentally
+::accidnetally::accidentally
 ::acclimitization::acclimatization
 ::accomdate::accommodate
 ::accomodate::accommodate
@@ -663,14 +679,17 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::accompanyed::accompanied
 ::acomplish::accomplish
 ::acomplished::accomplished
+::accomplishemnt::accomplishment
 ::acomplishment::accomplishment
 ::acomplishments::accomplishments
+::accoding::according
 ::accoring::according
 ::acording::according
 ::accordingto::according to
 ::acordingly::accordingly
 ::accordeon::accordion
 ::accordian::accordion
+::acconut::account
 ::acocunt::account
 ::acuracy::accuracy
 ::acccused::accused
@@ -681,6 +700,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::achive::achieve
 ::achivement::achievement
 ::achivements::achievements
+::acide::acid
+::acknolwedge::acknowledge
 ::acknowldeged::acknowledged
 ::acknowledgeing::acknowledging
 ::accoustic::acoustic
@@ -699,10 +720,16 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::accross::across
 ::activly::actively
 ::activites::activities
+::actaully::actually
 ::actualy::actually
 ::actualyl::actually
+::acutally::actually
+::acutaly::actually
+::acutlaly::actually
+::atually::actually
 ::adaption::adaptation
 ::adaptions::adaptations
+::addng::adding
 ::addtion::addition
 ::additinal::additional
 ::addtional::additional
@@ -723,6 +750,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::adequite::adequate
 ::adherance::adherence
 ::adhearing::adhering
+::adjusmenet::adjustment
+::adjusment::adjustment
+::adjustement::adjustment
+::adjustemnet::adjustment
+::adjustmenet::adjustment
 ::adminstered::administered
 ::adminstrate::administrate
 ::adminstration::administration
@@ -761,7 +793,10 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::afficionados::aficionados
 ::aforememtioned::aforementioned
 ::affraid::afraid
+::afradi::afraid
+::afriad::afraid
 ::afterthe::after the
+::agani::again
 ::agian::again
 ::agin::again
 ::againnst::against
@@ -792,6 +827,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::agreemeents::agreements
 ::agreemnets::agreements
 ::agricuture::agriculture
+::aheda::ahead
 ::airbourne::airborne
 ::aicraft::aircraft
 ::aircaft::aircraft
@@ -812,6 +848,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::algorhitms::algorithms
 ::algoritms::algorithms
 ::alientating::alienating
+::all the itme::all the time
 ::alltime::all-time
 ::aledge::allege
 ::alege::allege
@@ -843,21 +880,30 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::alraedy::already
 ::alreayd::already
 ::alreday::already
+::alredy::already
 ::aready::already
+::alrigth::alright
+::alriht::alright
 ::alsation::Alsatian
+::alos::also
 ::alsot::also
 ::aslo::also
+::laternative::alternative
 ::alternitives::alternatives
 ::allthough::although
 ::altho::although
 ::althought::although
 ::altough::although
+::altogehter::altogether
 ::allwasy::always
 ::allwyas::always
 ::alwasy::always
 ::alwats::always
 ::alway::always
+::alwayus::always
 ::alwyas::always
+::awlays::always
+::a mnot::am not
 ::amalgomated::amalgamated
 ::amatuer::amateur
 ::amerliorate::ameliorate
@@ -871,6 +917,15 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::amung::among
 ::amoungst::amongst
 ::ammount::amount
+::amonut::amount
+::amoutn::amount
+::amplfieir::amplifier
+::amplfiier::amplifier
+::ampliotude::amplitude
+::amploitude::amplitude
+::amplotude::amplitude
+::amplotuide::amplitude
+::amploitudes::amplitudes
 ::ammused::amused
 ::analagous::analogous
 ::analogeous::analogous
@@ -883,6 +938,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::adn::and
 ::anbd::and
 ::anmd::and
+::an dgot::and got
 ::andone::and one
 ::andt he::and the
 ::andteh::and the
@@ -893,6 +949,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::aniversary::anniversary
 ::annouced::announced
 ::anounced::announced
+::announcemnt::announcement
 ::anual::annual
 ::annualy::annually
 ::annuled::annulled
@@ -908,17 +965,34 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::anohter::another
 ::anotehr::another
 ::anothe::another
+::ansewr::answer
 ::anwsered::answered
+::naswered::answered
 ::antartic::antarctic
 ::anthromorphisation::anthropomorphisation
 ::anthromorphization::anthropomorphization
 ::anti-semetic::anti-Semitic
+::anticlimatic::anticlimactic
 ::anyother::any other
+::anuthing::anything
+::anyhting::anything
+::anythihng::anything
+::anytihng::anything
+::anyting::anything
 ::anytying::anything
+::naything::anything
+::anwyay::anyway
+::anywya::anyway
+::nayway::anyway
+::naywya::anyway
 ::anyhwere::anywhere
 ::appart::apart
 ::aparment::apartment
+::aparmtent::apartment
+::aparmtnet::apartment
+::apartmnet::apartment
 ::appartment::apartment
+::apartmetns::apartments
 ::appartments::apartments
 ::apenines::Apennines
 ::appenines::Apennines
@@ -929,6 +1003,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::apparant::apparent
 ::apparrent::apparent
 ::apparantly::apparently
+::apparnelty::apparently
+::apparnetly::apparently
+::apparntely::apparently
 ::appealling::appealing
 ::appeareance::appearance
 ::appearence::appearance
@@ -941,6 +1018,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::applicaiton::application
 ::applicaitons::applications
 ::aplied::applied
+::appluied::applied
 ::applyed::applied
 ::appointiment::appointment
 ::apprieciate::appreciate
@@ -952,6 +1030,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::approrpiate::appropriate
 ::approrpriate::appropriate
 ::apropriate::appropriate
+::approvla::approval
 ::approproximate::approximate
 ::aproximate::approximate
 ::approxamately::approximately
@@ -974,21 +1053,29 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::architechtures::architectures
 ::arn't::aren't
 ::argubly::arguably
+::arguements::arguments
+::argumetns::arguments
 ::armamant::armament
 ::armistace::armistice
 ::arised::arose
 ::arond::around
+::aronud::around
 ::aroud::around
 ::arround::around
 ::arund::around
+::around ot::around to
 ::aranged::arranged
 ::arangement::arrangement
+::arragnemetn::arrangement
+::arragnemnet::arrangement
+::arrangemetn::arrangement
 ::arrangment::arrangement
 ::arrangments::arrangements
 ::arival::arrival
 ::artical::article
 ::artice::article
 ::articel::article
+::artilce::article
 ::artifical::artificial
 ::artifically::artificially
 ::artillary::artillery
@@ -998,6 +1085,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::aisian::Asian
 ::asside::aside
 ::askt he::ask the
+::asknig::asking
+::alseep::asleep
 ::asphyxation::asphyxiation
 ::assisnate::assassinate
 ::assassintation::assassination
@@ -1018,6 +1107,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::assocation::association
 ::asume::assume
 ::asteriod::asteroid
+::asychronous::asynchronous
+::a tthat::at that
 ::atthe::at the
 ::athiesm::atheism
 ::athiest::atheist
@@ -1027,6 +1118,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::atmospher::atmosphere
 ::attrocities::atrocities
 ::attatch::attach
+::attahed::attached
 ::atain::attain
 ::attemp::attempt
 ::attemt::attempt
@@ -1071,6 +1163,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::auxillary::auxiliary
 ::auxilliary::auxiliary
 ::availablility::availability
+::avaiable::available
 ::availaible::available
 ::availalbe::available
 ::availble::available
@@ -1078,13 +1171,19 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::availible::available
 ::avalable::available
 ::avaliable::available
+::avialable::available
 ::avilable::available
+::vaialable::available
 ::avalance::avalanche
 ::averageed::averaged
 ::avation::aviation
 ::awared::awarded
 ::awya::away
 ::aywa::away
+::aweomse::awesome
+::aweosme::awesome
+::awesomoe::awesome
+::aziumth::azimuth
 ::abck::back
 ::bakc::back
 ::bcak::back
@@ -1092,13 +1191,18 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::backrounds::backgrounds
 ::balence::balance
 ::ballance::balance
+::balacned::balanced
 ::banannas::bananas
 ::bandwith::bandwidth
 ::bankrupcy::bankruptcy
 ::banruptcy::bankruptcy
 ::barbeque::barbecue
+::barcod::barcode
 ::basicaly::basically
+::basiclaly::basically
 ::basicly::basically
+::batteryes::batteries
+::batery::battery
 ::cattleship::battleship
 ::bve::be
 :c:eb::be ; EB is legit?
@@ -1108,13 +1212,22 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::beutiful::beautiful
 ::becamae::became
 ::baceause::because
+::bcause::because
+::bceause::because
+::bceayuse::because
+::beacues::because
 ::beacuse::because
 ::becasue::because
+::becaues::because
 ::becaus::because
+::becayse::because
 ::beccause::because
+::beceause::because
 ::becouse::because
 ::becuase::because
 ::becuse::because
+::ebcause::because
+::ebceause::because
 ::becausea::because a
 ::becauseof::because of
 ::becausethe::because the
@@ -1124,6 +1237,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::becomming::becoming
 ::bedore::before
 ::befoer::before
+::ebfore::before
 ::begginer::beginner
 ::begginers::beginners
 ::beggining::beginning
@@ -1134,6 +1248,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::beggins::begins
 ::behavour::behaviour
 ::beng::being
+::benig::being
 ::beleagured::beleaguered
 ::beligum::belgium
 ::beleif::belief
@@ -1159,9 +1274,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::beseiged::besieged
 ::beseiging::besieging
 ::beastiality::bestiality
+::beter::better
 ::betweeen::between
 ::betwen::between
 ::bewteen::between
+::bweteen::between
 ::inbetween::between
 ::vetween::between
 ::bicep::biceps
@@ -1177,16 +1294,22 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::bombardement::bombardment
 ::bombarment::bombardment
 ::bonnano::Bonanno
+::bootlaoder::bootloader
+::bototm::bottom
+::bougth::bought
 ::bondary::boundary
 ::boundry::boundary
 ::boxs::boxes
+::boyfriedn::boyfriend
 ::brasillian::Brazilian
+::breka::break
 ::breakthough::breakthrough
 ::breakthroughts::breakthroughs
 ::brethen::brethren
 ::bretheren::brethren
 ::breif::brief
 ::breifly::briefly
+::brigthness::brightness
 ::briliant::brilliant
 ::brillant::brilliant
 ::brimestone::brimstone
@@ -1196,14 +1319,19 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::brodcast::broadcast
 ::broadacasting::broadcasting
 ::broady::broadly
+::brocolli::broccoli
 ::borke::broke
+::borther::brother
+::broguht::brought
 ::buddah::Buddha
+::buiding::building
 ::bouy::buoy
 ::bouyancy::buoyancy
 ::buoancy::buoyancy
 ::bouyant::buoyant
 ::boyant::buoyant
 ::beaurocracy::bureaucracy
+::bureacracy::bureaucracy
 ::beaurocratic::bureaucratic
 ::burried::buried
 ::buisness::business
@@ -1211,25 +1339,40 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::bussiness::business
 ::busineses::businesses
 ::buisnessman::businessman
+::buit::but
+::ubt::but
+::ut::but
 ::butthe::but the
+::buynig::buying
 ::byt he::by the
+::caeser::caesar
 ::ceasar::Caesar
+::caffeien::caffeine
 ::casion::caisson
+::calcluate::calculate
 ::caluclate::calculate
 ::caluculate::calculate
 ::calulate::calculate
+::claculate::calculate
 ::calcullated::calculated
 ::caluclated::calculated
 ::caluculated::calculated
 ::calulated::calculated
+::claculated::calculated
+::calcuation::calculation
+::claculation::calculation
+::claculations::calculations
 ::calculs::calculus
 ::calander::calendar
+::calednar::calendar
 ::calenders::calendars
 ::califronia::California
 ::califronian::Californian
 ::caligraphy::calligraphy
+::calilng::calling
 ::callipigian::callipygian
 ::cambrige::Cambridge
+::cmae::came
 ::camoflage::camouflage
 ::campain::campaign
 ::campains::campaigns
@@ -1237,11 +1380,14 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::cna::can
 ::cxan::can
 ::can't of::can't have
+::cancle::cancel
 ::candadate::candidate
 ::candiate::candidate
 ::candidiate::candidate
 ::candidtae::candidate
 ::candidtaes::candidates
+::candidtes::candidates
+::canidtes::candidates
 ::cannister::canister
 ::cannisters::canisters
 ::cannnot::cannot
@@ -1249,11 +1395,18 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::cantalope::cantaloupe
 ::caperbility::capability
 ::capible::capable
+::capacitro::capacitor
+::cpacitor::capacitor
+::capcaitors::capacitors
 ::capetown::Cape Town
 ::captial::capital
 ::captued::captured
 ::capturd::captured
 ::carcas::carcass
+::cardiod::cardioid
+::cardiodi::cardioid
+::cardoid::cardioid
+::caridoid::cardioid
 ::carreer::career
 ::carrers::careers
 ::carefull::careful
@@ -1282,6 +1435,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::catholocism::catholicism
 ::caucasion::Caucasian
 ::cacuses::caucuses
+::causeing::causing
 ::cieling::ceiling
 ::cellpading::cellpadding
 ::celcius::Celsius
@@ -1308,12 +1462,22 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::challanges::challenges
 ::chalenging::challenging
 ::champange::champagne
+::chcance::chance
 ::chaneg::change
 ::chnage::change
+::hcange::change
 ::changable::changeable
+::chagned::changed
+::chnaged::changed
 ::chanegs::changes
 ::changeing::changing
+::changin::changing
 ::changng::changing
+::cahnnel::channel
+::chanenl::channel
+::channle::channel
+::hcannel::channel
+::chanenls::channels
 ::caharcter::character
 ::carachter::character
 ::charachter::character
@@ -1330,14 +1494,18 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::cahracters::characters
 ::charachters::characters
 ::charactors::characters
+::hcarge::charge
+::chargig::charging
 ::carismatic::charismatic
 ::charasmatic::charismatic
 ::chartiable::charitable
 ::caht::chat
+::chcek::check
 ::chekc::check
 ::chemcial::chemical
 ::chemcially::chemically
 ::chemicaly::chemically
+::checmicals::chemicals
 ::chemestry::chemistry
 ::cheif::chief
 ::childbird::childbirth
@@ -1345,7 +1513,10 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::childrens::children's
 ::chilli::chili
 ::choosen::chosen
+::chrisitan::Christian
+::chruch::church
 ::chuch::church
+::churhc::church
 ::curch::church
 ::churchs::churches
 ::cincinatti::Cincinnati
@@ -1355,7 +1526,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::curcuit::circuit
 ::circulaton::circulation
 ::circumsicion::circumcision
+::circumfrence::circumference
 ::sercumstances::circumstances
+::citaion::citation
 ::cirtus::citrus
 ::civillian::civilian
 ::claimes::claims
@@ -1368,11 +1541,16 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::claered::cleared
 ::claerer::clearer
 ::claerly::clearly
+::clikc::click
 ::cliant::client
 ::clincial::clinical
 ::clinicaly::clinically
+::clipipng::clipping
+::clippin::clipping
+::closeing::closing
 ::caost::coast
 ::coctail::cocktail
+::ocde::code
 ::cognizent::cognizant
 ::co-incided::coincided
 ::coincedentally::coincidentally
@@ -1396,9 +1574,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::combanations::combinations
 ::combinatins::combinations
 ::combusion::combustion
+::ocme::come
 ::comback::comeback
 ::commedic::comedic
 ::confortable::comfortable
+::comeing::coming
 ::comming::coming
 ::commadn::command
 ::comander::commander
@@ -1443,6 +1623,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::commongly::commonly
 ::commonweath::commonwealth
 ::comunicate::communicate
+::commiunicating::communicating
+::communiucating::communicating
 ::comminication::communication
 ::communciation::communication
 ::communiation::communication
@@ -1458,16 +1640,19 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::company;s::company's
 ::comparitive::comparative
 ::comparitively::comparatively
+::comapre::compare
 ::compair::compare
 ::comparision::comparison
 ::comparisions::comparisons
 ::compability::compatibility
 ::compatiable::compatible
+::compatioble::compatible
 ::compensantion::compensation
 ::competance::competence
 ::competant::competent
 ::compitent::competent
 ::competitiion::competition
+::competitoin::competition
 ::compeitions::competitions
 ::competative::competitive
 ::competive::competitive
@@ -1479,20 +1664,31 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::competely::completely
 ::compleatly::completely
 ::completelyl::completely
+::completley::completely
 ::completly::completely
 ::compleatness::completeness
 ::completness::completeness
 ::completetion::completion
+::ocmplex::complex
+::xomplex::complex
+::comopnent::component
 ::componant::component
+::comopnents::components
 ::composate::composite
 ::comphrehensive::comprehensive
 ::comprimise::compromise
 ::compulsary::compulsory
 ::compulsery::compulsory
 ::cmoputer::computer
+::comptuer::computer
+::compuer::computer
+::copmuter::computer
 ::coputer::computer
+::ocmputer::computer
 ::computarised::computerised
 ::computarized::computerized
+::comptuers::computers
+::ocmputers::computers
 ::concieted::conceited
 ::concieve::conceive
 ::concieved::conceived
@@ -1506,7 +1702,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::comdemnation::condemnation
 ::condamned::condemned
 ::condemmed::condemned
+::condensor::condenser
 ::condidtion::condition
+::ocndition::condition
 ::condidtions::conditions
 ::conditionsof::conditions of
 ::condolances::condolences
@@ -1515,15 +1713,26 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::confidentally::confidentially
 ::confids::confides
 ::configureable::configurable
+::configuraiton::configuration
+::configuraoitn::configuration
 ::confirmmation::confirmation
+::ocnfirmed::confirmed
 ::coform::conform
+::confusnig::confusing
 ::congradulations::congratulations
 ::congresional::congressional
 ::conjecutre::conjecture
 ::conjuction::conjunction
+::connet::connect
 ::conected::connected
+::conneted::connected
 ::conneticut::Connecticut
+::conneting::connecting
 ::conection::connection
+::connectino::connection
+::connetion::connection
+::connetions::connections
+::connetors::connectors
 ::conived::connived
 ::cannotation::connotation
 ::cannotations::connotations
@@ -1559,7 +1768,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::concidering::considering
 ::conciders::considers
 ::consistant::consistent
+::consistnet::consistent
 ::consistantly::consistently
+::consistnelty::consistently
+::consistnetly::consistently
+::consistntely::consistently
 ::consolodate::consolidate
 ::consolodated::consolidated
 ::consonent::consonant
@@ -1569,7 +1782,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::conspiricy::conspiracy
 ::conspiriator::conspirator
 ::constatn::constant
+::constnat::constant
 ::constanly::constantly
+::constnatly::constantly
 ::constarnation::consternation
 ::consituencies::constituencies
 ::consituency::constituency
@@ -1581,6 +1796,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::costitution::constitution
 ::consitutional::constitutional
 ::constituional::constitutional
+::constriant::constraint
 ::constaints::constraints
 ::consttruction::construction
 ::constuction::construction
@@ -1611,6 +1827,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::contritutions::contributions
 ::contributer::contributor
 ::contributers::contributors
+::contorl::control
 ::controll::control
 ::controled::controlled
 ::controling::controlling
@@ -1637,6 +1854,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::cooporate::cooperate
 ::coordiantion::coordination
 ::cpoy::copy
+::copyrigth::copyright
 ::copywrite::copyright
 ::coridal::cordial
 ::corparate::corporate
@@ -1644,7 +1862,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::coorperations::corporations
 ::corperations::corporations
 ::corproations::corporations
+::corret::correct
+::correciton::correction
+::corretly::correctly
 ::correcters::correctors
+::correlatoin::correlation
 ::corrispond::correspond
 ::corrisponded::corresponded
 ::correspondant::correspondent
@@ -1660,12 +1882,15 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::corruptable::corruptible
 ::cotten::cotton
 ::coudl::could
+::oculd::could
+::ucould::could
 ::could of::could have
 ::couldthe::could the
 ::coudln't::couldn't
 ::coudn't::couldn't
 ::couldnt::couldn't
 ::coucil::council
+::counterfiet::counterfeit
 ::counries::countries
 ::countires::countries
 ::ocuntries::countries
@@ -1686,7 +1911,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::crystalisation::crystallisation
 ::culiminating::culminating
 ::cumulatative::cumulative
+::curiousity::curiosity
+::currnet::current
 ::currenly::currently
+::curretnly::currently
+::currnets::currents
 ::ciriculum::curriculum
 ::curriculem::curriculum
 ::cusotmer::customer
@@ -2477,7 +2706,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::habaeus::habeas
 ::habeus::habeas
 ::habsbourg::Habsburg
-::hda::had
+:c:hda::had
 ::hadbeen::had been
 ::haemorrage::haemorrhage
 ::hallowean::Halloween
@@ -2858,7 +3087,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::journies::journeys
 ::juadaism::Judaism
 ::juadism::Judaism
-::judgment::judgement
+::judgement::judgment ;  "without the -e is preferred in law globally, and in American English"
+::judgements::judgments ;  "without the -e is preferred in law globally, and in American English"
 ::jugment::judgment
 ::judical::judicial
 ::juducial::judicial
@@ -4256,7 +4486,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::stainlees::stainless
 ::stnad::stand
 ::standars::standards
-::strat::start
+; ::strat::start   Stratocaster
 ::statment::statement
 ::statememts::statements
 ::statments::statements
@@ -4879,7 +5109,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::wayword::wayward
 ::we;d::we'd
 ::weaponary::weaponry
-::wether::weather
+;::wether::weather   ; ambiguous: leave uncorrected
 ::wendsay::Wednesday
 ::wensday::Wednesday
 ::wiegh::weigh
@@ -4922,7 +5152,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::wille::will
 ::wiull::will
 ::willbe::will be
-::will of::will have
+;::will of::will have  ; "will of the voters"
 ::willingless::willingness
 ::windoes::windows
 ::wintery::wintry
@@ -5049,6 +5279,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::belives::believes, beliefs
 ::boaut::bout, boat, about
 ::Bon::Bön
+
 ::assasined::assassinated ; Broken by ":*:assasin::", but no great loss.
 ::Bootes::Boötes
 ::bric-a-brac::bric-à-brac
@@ -5282,7 +5513,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::thursday::Thursday
 ::friday::Friday
 ::saturday::Saturday
-::sunday::Sunday 
+::sunday::Sunday
 
 ::january::January
 ::february::February
@@ -5377,744 +5608,55 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ; Anything below this point was added to the script by the user via the hotkey.
 ;-------------------------------------------------------------------------------
 
-; c = case sensitive
-; c1 = ignore the case that was typed, always use the same case for output
-; * = immediate change (no need for space, period, or enter)
-; ? = triggered even when the character typed immediately before it is alphanumeric
-; r = raw output
-
-; Some of these are probably duplicates.  Check.
-; some probably cause problems. don't absorb into main list until used thoroughly
-; Could split them up by date, so ones I've used for a year without noticing problems get moved into main list?
-
-; ::itme::time ; much more common than item
-; ::tiem::item ; more common than time?
-
-; what does android use for word list, like autocorrecting "isn't"?
-
-; Use typographic apostrophes instead of typewriter apostrophes?  "don’t" instead of "don't"
-; Try it for a while and see if it causes problems
-
-; ::doesnt' converts to doesn't', and so on
-; is ' a trigger character like space? yes, it is.  if I define ::dont':: first, will it work?
-; no it doesn't ::dont'::don't
-
-
-
-;-------------------------------------------------------------------------------
-; Unsorted/sketchy
-;-------------------------------------------------------------------------------
-
-:*:assemblt::assembly
-:*:dbfs::dBFS
-:*:dbu::dBu
-:*:dbv::dBV
-:*:mhz::MHz
-:*:thuogh::though ; also fixes thuoght
-:*:tohugh::though ; also fixes tohught
-:*:upnp::UPnP ; Alternating case are hard to type
-:*:voip::VoIP
-::,com::.com
-::,net::.net
-::,org::.org
-::;0:::) ; mistyped smiley
-::a mnot::am not
-::a tthat::at that
-::abot::about
-::abou tit::about it
-::absolutley::absolutely
-::abuot::about
-::acceotable::acceptable
-::accidnetally::accidentally
-::accoding::according
-::acconut::account
-::acide::acid ; muscle memory?
-::acutally::actually
-::acutaly::actually
-::acutlaly::actually
-::afriad::afraid
-::agani::again
-::ahd::had
-::ahdn't::hadn't
-::ahould::should
-::ahs::has
-::ahte::hate
-::alos::also
-::alredy::already
-::alrigth::alright
-::alriht::alright
-::alseep::asleep
-::altogehter::altogether
-::amny::many
-::amonut::amount
-::amoutn::amount
-::amplfiier::amplifier
-::an dgot::and got
-::announcemnt::announcement
 ::ansewr::answer
-::anuthing::anything
-::anyhting::anything
-::anytihng::anything
-::anyting::anything
-::anywya::anyway
-::aobut::about
-::aparmtent::apartment
-::aparmtnet::apartment
-::apartmnet::apartment
-::apparnelty::apparently
-::apparnetly::apparently
-::apparntely::apparently
-::arguements::arguments
-::argumetns::arguments
-::aronud::around
-::around ot::around to
-::artilce::article
-::asknig::asking
-::asme::same
 ::at he::at the
-::at ime::a time
-::atke::take
-::attahed::attached
-::atually::actually 
 ::avialable::available
-::aweomse::awesome
 ::aweosme::awesome
-::awesomoe::awesome
-::awlays::always
-::awnt::want
-::barcod::barcode
-::basiclaly::basically
-::bcause::because
 ::bceause::because
-::bceayuse::because
-::becaues::because
-::becayse::because
-::beceause::because
-::benig::being
-::bjork::Björk
-::borther::brother
-::bouat::about
-::bougth::bought
-::boyfriedn::boyfriend
-::breka::break
-::brigthness::brightness
-::broguht::brought
-::buit::but
-::buynig::buying
-::bweteen::between
-::caeser::caesar
-::caffeien::caffeine
-::cahnnel::channel
 ::calilng::calling
-::cancle::cancel
-::chagned::changed
-::chanenl::channel
-::chargig::charging
-::chcance::chance
-::chcek::check
-::chiphcaker::chiphacker
-::chnaged::changed
-::chrisitan::Christian
-::churhc::church
-::ckt::circuit
+::cant::can't
 ::clikc::click
-::clipipng::clipping
-::clippin::clipping
 ::closeing::closing
-::cmae::came
-::comeing::coming
-::comopnent::component
-::competitoin::competition
-::completley::completely
-::comptuer::computer
-::compuer::computer
-::connet::connect
-::conneted::connected
-::conneting::connecting
-::connetion::connection
-::connetions::connections
-::connetors::connectors
-::consistnet::consistent
-::consistnetly::consistently
-::constnat::constant
-::contorl::control
-::copmuter::computer
-::copyrigth::copyright
-::correlatoin::correlation
-::cpacitor::capacitor
-::curretnly::currently
-::dagnerous::dangerous
+::coulnd't::couldn't
+::coulndt::couldn't
+::cutre::cuter
 ::db::dB
-::dba::dB(A) ; probationary
-::dbm::dBm
-::definitley::definitely
-::definitoin::definition 
-::deosnt::doesn't
-::detial::detail
-::dictoinary::dictionary
-::differnece::difference
+::dbfs::dBFS
+::dbu::dBu
 ::differnet::different
-::differnetial::differential
-::differnetly::differently
-::direcitons::directions
-::direclty::directly
-::directoyr::directory
-::diretclty::directly
-::diretly::directly
-::disappered::disappeared
-::disconneted::disconnected
-::distnace::distance
-::dobut::doubt
-::documentaiton::documentation
-::doe sit::does it ; "Where does the doe sit?" is exceedingly uncommon
-::doenst::doesn't
-::does’t::doesn’t
-::does't::doesn't
-::doest::doesn't
-::droppin::dropping
-::durin::during
-::durnig::during
-::ebay::eBay
-::ebcause::because
-::ebery::every
-::ebfore::before
-::ecah::each
-::electoin::election
-::emptyu::empty
-::encyrpted::encrypted
-::Englihs::English
-::enogh::enough
-::entier::entire
-::enugh::enough
 ::enuogh::enough
-::everythiung::everything
-::everytihng::everything
-::everyting::everything
-::eveyrone::everyone
-::evidnece::evidence
-::evne::even
-::exampel::example
-::exampels::examples
-::exapmle::example
-::excahgne::exchange
-::expereince::experience
-::expereinced::experienced
-::extenral::external
 ::extrmely::extremely
-::failes::fails
-::favotires::favorites
-::feburary::February
-::fialed::failed
-::firsrt::first
-::fmaily::family
-::fnid::find
-::fnuction::function
-::fonud::found
-::frequecny::frequency
-::frequence::frequency
-::frequeqncy::frequency
-::frequey::frequency
-::freuqency::frequency
-::frineds::friends
-::frist::first
-::funciton::functIon
-::functoin::functIon
-::ge tit::get it
-::genious::genius
-::giflriend::girlfriend
-::giong::going
-::girlfirend::girlfriend
-::girlfriedn::girlfriend
-::glady::gladly
-::gogole::google
-::goin::going
-::goodniht::goodnight
-::gorund::ground
-::gorup::group
-::grapsh::graphs
-::grond::ground
-::gronud::ground
-::haah::haha
-::habe::have
-::habve::have
-::havbe::have
-::havnet::haven't
+::havent::haven't
 ::hcange::change
-::hcannel::channel
-::hcarge::charge
-::hemorrage::hemorrhage
-::hgih::high
-::hgiher::higher
-::hihg::high
-::hmm>::hmm?
-::hsould::should
-::hsuold::should
 ::htan::than
-::htat::that
-::hteir::their
-::hteyre::they're
-::htier::their
-::htings::things
-::htinking::thinking
-::htis::this
 ::htme::them
-::htne::then
-::htough::though
-::htought::thought
-::htye::they
-::hugnry::hungry
-::huor::hour
-::hwat::what
-::hwatever::whatever
-::hwen::when
-::hwne::when
-::hwy::why ; highway?
-::i'ts::it's
-::i2c::I²C
-::icnlude::include
-::ifnd::find
+::hz::Hz
+::i::I
 ::imaginig::imagining
-::imagning::imagining
-::imainge::imagine
-::imght::might
-::impednace::impedance
-::imporatnt::important
-::importatn::important
-::imsses::misses
-::includeing::including
-::indepdenent::independent
-::independentnly::independently
-::informatin::information
-::informatino::information
-::inlucde::include
-::inspectoin::inspection
-::instnace::instance
-::intemittent::intermittent
-::intenet::internet
-::intenret::internet ; capitalized?
-::intentinoally::intentionally
-::intereste::interest
-::interseted::interested
-::invovles::involves
 ::ipmedance::impedance
-::ipod::iPod
-::is'nt::isn't
-::isi t::is it
-::isntead::instead
-::it hought::I thought
-::iwndows::windows
-::iwthout::without
-::jaja::haha
-::jounral::journal
-::jounrla::journal
-::juist::just
-::kahki::khaki
-::kev::keV
-::kidn::kind
-::kwh::kWh ; or kW·h?
-::langauge::language
-::layotu::layout
-::leaveing::leaving
-::likcs::licks
-::likley::likely
-::limitnig::limiting
-::limtied::limited
-::litle::little
-::lnuch::lunch
-::locatoin::location
-::mater::matter
-::mcu::MCU
-::mcuh::much
-::measureing::measuring
-::measuremnets::measurements
-::measuriong::measuring
-::measurmenet::measurement
-::measurnig::measuring
-::meauring::measuring
-::meausing::measuring
-::meausre::measure 
-::meausred::measured
-::meausrements::measurements
-::meausring::measuring
-::mena::mean
-::menas::means
-::mev::MeV
-::microphoen::microphone
-::migth::might
-::mihgt::might
-::minium::minimum
-::miniutes::minutes
-::monhts::months
-::mornig::morning
-::mornign::morning
-::mosly::mostly
-::mstake::mistake
-::muhc::much
-::muich::much
-::mwh::MWh ; or MW⋅h?
-::myeslf::myself
-::nad::and ; usually...
-::naerby::nearby
-::naswered::answered
-::naything::anything
-::nayway::anyway
-::necesasry::necessary
-::nee::need ; not née
-::neergy::energy
-::negatuive::negative
-::neough::enough
-::netowrk::network
-::netowrks::networks
-::ngiht::night
-::ngith::night
-::nigth::night
-::nihgt::night
-::niose::noise
-::nito::into
-::nkew::knew
-::normlaly::normally
-::nosie::noise ; other word is nosy or nosey
-::nothin::nothing
-::noticabley::noticeably
-::notificatoins::notifications
-::nyc::NYC
-::obssessed::obsessed
-::obvioulsy::obviously
-::ocassionally::occasionally
-::occasoinally::occasionally
-::oclock::o'clock
-::ocme::come
-::ocmputer::computer
-::ocmputers::computers
-::ocndition::condition
-::ocnfirmed::confirmed
-::oculd::could
-::ofr::for
-::oftne::often
-::ohurs::hours
-::ohw::how
-::omved::moved 
-::ont::not
-::onteh::on the
-::opamp::op-amp
-::opamps::op-amps
-::optino::option
-::opwer::power
-::origianl::original
-::osftware::software
-::osmething::something
-::osmetihng::something
-::ot it::to it
-::ot::to ; why not?  try it
-::otday::today
-::otehrs::others
-::otehrwise::otherwise
-::othre::other
-::otok::took
-::otput::output
-::otuput::output
-::ouptut::output
-::outptu::output
-::ouwld::would
-::ovre::over
-::owkr::work
-::owkred::worked
-::owrking::working
-::owrld::world
-::owuldn't::wouldn't
-::paralell::parallel
-::paralllel::parallel
-::parnet::parent
-::parnets::parents
-::partitoin::partition
-::passowrd::password
-::pepole::people
-::permisson::permission
-::phoen::phone
-::picures::pictures
-::picutres::pictures
-::pikc::pick
-::plateus::plateaus
-::playnig::playing
-::pleaes::please
+::ive::I've
+::khz::kHz
+::mhz::MHz
+::nad::and
+::pcb::PCB
 ::poewr::power
 ::poictures::pictures
-::powe ramp::power amp
-::powre::power
-::pppoe::PPPoE
-::previouilsy::previously
-::proably::probably
-::probablyu::probably
 ::probalby::probably
-::probbaly::probably
-::problme::problem
-::prodcut::product
-::producting::producing
-::produyction::production
-::proflie::profile
-::proggressive::progressive
-::proteciont::protection
-::proteciotn::protection
-::protectoin::protection
-::punsihed::punished
-::pythong::python
-::qeustion::qyestion
-::qiote::quote
-::qos::QoS
-::quesiton::question
-::quesitons::questions
-::questoin::question
-::questoins::questions
-::quetsions::questions
-::qupte::quote
-::radiaton::radiation
 ::realisitc::realistic
-::reaosn::reason
-::recevier::receiver
-::reciever::receiver
-::referenec::reference
-::refernece::reference
-::regoin::region
-::relatinoship::relationship
-::relatoinship::relationship
-::relatoinships::relationships
-::relayout::re-layout
-::reltaive::relative
-::remembre::remember
-::rememebr::remember
 ::remmeber::remember
-::removeing::removing
-::reprhase::rephrase
-::resistnace::resistance
-::resolutoin::resolution
-::retratcting::retracting
-::rigth::right
-::rotaion::rotation
-::rpeair::repair
-::rpevent::prevent
-::runnign::running
-::salvagable::salvageable
-::scehmatic::schematic
-::seires::series
-::separatley::separately
-::separatoin::separation
-::serach::search
-::seraching::searching
-::seriosly::seriously
-::serioulsy::seriously
-::shiled::shield
 ::shold::should
-::shoud::should
-::shoulod::should
-::shouold::should
-::shuld::should
-::shuold::should
-::siad::said
-::signle::single
-::sin't::isn't
-::situatoin::situation
-::siure::sure
-::sleepnig::sleeping
-::smaple::sample
-::soemone::someone
-::softare::software
-::sohld::should
 ::sohuld::should
-::sohuold::should
-::soltuion::solution
-::solutino::solution
-::solutoin::solution
-::somehing::something
-::somenoe::someone
-::somethin::something
-::sometihng::something
-::somewhre::somewhere
-::somone::someone
-::somwhoe::somehow
-::sonud::sound
-::sonuds::sounds
-::sourec::source
-::sp/dif::S/PDIF
-::spdif::S/PDIF
-::spnet::spent
-::spontanoeus::spontaneous
-::stackexhcange::stackexchange
-::striaght::straight
-::strnagers::strangers
-::stylii::styli
-::substittue::substitute
-::suclk::suck
-::sucls::sucks
-::suplpy::supply
-::supopsed::supposed
-::suppoesd::supposed
-::suprisingly::surprisingly
-::swiching::switching
-::switcihng::switching 
-::swithced::switched
-::swithcing::switching
-::swtiches::switches
-::swtiching::switching
-::t odo::to do
-::t oteh::to the
 ::t othe::to the
-::takl::talk
-::takled::talked
-::takling::talking
-::taklnig::talking
-::takls::talks
-::talkin::talking
-::talkng::talkIng
-::tempearture::temperature
-::temperatue::temperature
-::terminsla::terminals
-::tha na::than a
-::tha nthis::than this
-::tha twould::that would
-::thai::Thai
-::thasnk::thanks
-::the mand::them and
-::the mfor::them for
-::tHe::the
-::theo ther::the other
-::tHey::they
-::thght::thought
-::thhe::the
-::thigns::things
-::thinik::think
-::thinknig::thinking
-::thisi s::this is
-::thme::them
-::thogh::though
-::thoght::thought
-::thoguh::though
-::thorugh::through
-::thoruhg::through
-::thouhg::though
-::thruogh::through
+::theyre::they're
 ::tht::that
-::thudnerbird::thunderbird
-::thugh::though
-::thught::thought
-::thuosands::thousands
-::thye::they
-::tihng::thing
-::tihngs::things
+::thuogh::though
 ::tihnk::think
-::tink::think
-::to,orrow::tomorrow
-::toehr::other
-::togethr::together
-::togteher::together
-::toher::other
-::toinght::tonight
-::tomororw::tomorrow
-::totlaly::totally
-::traditioanl::traditional
-::trakc::track
-::transciever::transceiver
-::transforemrs::transformers
-::translatoin::translation
-::travelling::traveling
-::trhe::the
-::tryin::trying
-::trynig::trying
-::tunr::turn
-::Twh::TWh
-::ubt::but
-::ubutnu::ubuntu
-::ucould::could
-::ues::yes
-::uncommited::uncommitted
-::understnading::understanding
-::understnads::understands
-::undertand::understand
-::undertnad::understand
-::undrestand::understand
-::uot::out
-::uplaod::upload
-::upnp::UPnP
-::url::URL
-::usch::such
-::usnig::using
-::ut::but
-::vaialable::available
-::varaibles::variables
-::vdc::VDC
-::versoin::version
-::virbation::vibration
-::voide::void
-::votlage::voltage
-::wahtever::whatever
-::wakl::walk
-::wakled::walked
-::watcihng::watching
-::wathc::watch
-::wathcing::watching
-::webiste::website
-::websiute::website
-::weekdn::weekend
-::weekedn::weekend
-::weigth::weight
-::wekeend::weekend
-::werid::weird
-::we`;'re::we're
-::whch::which
-::wher are::where are
-::whethre::whether
-::whiel::while
-::whinig::whining
-::whlie::while
+::tohught::thought
+::usb::USB
+::werent::weren't
+::whats::what's
 ::whne::when
-::whuile::while
-::wi-fi::Wi-Fi
-::wifi::Wi-Fi
-::wihle::while
-::wiht::with
-::wikipedai::Wikipedia
-::wil::will
-::wIndows::windows
-::windwos::windows
-::winodws::windows
-::wit ha::with a
-::wit hit::with it
-::wit hteh::with the
-::wit hthat::with that
-::wit hthe::with the
-::withotu::without
-::withuot::without
-::witohut::without
-::wlil::will
-::woek::woke
-::wokred::worked
-::would't::wouldn't
-::writnig::writIng
-::writtne::written
+::wont::won't
 ::writtten::written
-::wroks::works
-::wtih::with
-::wuith::with
-::wuold::would
-::yaya::yay
-::yeha::yeah
-::yhe::the
-::yoyu::you
-::yunoger::younger
-::yuo::you
-::yuou::you
-:C*:hz::Hz
-:C*:KHz::kHz
-:c:bf::boyfriend
-:C:btu::but
-:c:gf::girlfriend
-:C:I"M::I'M
-:C:i::I ; very annoying when you type an I in the middle of a word and press enter and it capitalizes it, should not happen with "%i", etc.
-:C:Id::I'd ; not at the beginning of a sentence
-:C:Im::I'm ; cap sensitive so "IM" doesn't get corrected
-:C:IT"S::IT'S
-:C:pcb::PCB
-:C:spl::SPL
-:C:trs::TRS
-:C:ts::TS
-:C:usb::USB
-:C:xlr::XLR
+::youll::you'll
+::youre::you're
