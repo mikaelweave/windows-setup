@@ -1,4 +1,6 @@
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+#Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+#Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 
-cinst wsl2 --cacheLocation="C:\temp"
+#cinst wsl2 --cacheLocation="C:\temp"
+
+wsl --install -d Ubuntu

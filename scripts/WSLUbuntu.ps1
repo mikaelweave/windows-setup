@@ -1,1 +1,0 @@
-cinst wsl-ubuntu-2004 --cacheLocation="C:\temp"

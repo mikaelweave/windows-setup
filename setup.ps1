@@ -37,7 +37,6 @@ executeScript "Web.ps1";
 executeScript "MiscApps.ps1";
 executeScript "AutoHotKey.ps1";
 executeScript "WSL.ps1";
-executeScript "WSLUbuntu.ps1";
 executeScript "WSLArch.ps1";
 executeScript "Docker.ps1";
 

@@ -52,24 +52,4 @@ Unzip $($env:USERPROFILE + "\Downloads\Arch.zip") $($env:USERPROFILE + "\bin\Arc
 Write-Host "Installing Arch WSL..." 
 & "$env:USERPROFILE\bin\Arch\Arch.exe"
 
-Write-Host "Setting up user..."
-$archUser = Read-Host -Prompt 'What do you want your Arch user name to be?'
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run "useradd --create-home -g users -G wheel $archUser"
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run "passwd $archUser"
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run pacman-key --init
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run pacman-key --populate
-
-# Change our mirror to OSU (go beavs)
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run "sed -i -e 's/^/#/' /etc/pacman.d/mirrorlist"
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'echo "Server = http://ftp.osuosl.org/pub/archlinux/$repo/os/$arch" >> /etc/pacman.d/mirrorlist'
-
-# Install yay (AUR Helper)
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'mkdir yay && cd yay'
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run 'wget https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=yay'
-& "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $archUser
-& "$env:USERPROFILE\bin\Arch\Arch.exe" run  'makepkg -Acs'
-& "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $root
-pacman -U yay*
-
-# LAST THING - Change the default user to not root
-& "$env:USERPROFILE\bin\Arch\Arch.exe" config --default-user $archUser
+# https://gist.github.com/ld100/3376435a4bb62ca0906b0cff9de4f94b
