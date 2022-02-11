@@ -14,5 +14,7 @@ cinst azure-cli --cacheLocation="C:\temp"
 cinst sql-server-2019 --cacheLocation="C:\temp"
 cinst azure-cosmosdb-emulator --cacheLocation="C:\temp"
 
+cinst gpg4win --cacheLocation="C:\temp"
+
 # Pin items to the task bar
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
