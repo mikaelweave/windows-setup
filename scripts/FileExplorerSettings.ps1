@@ -17,14 +17,16 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 
 # Install files because...it's dope
 
-#Enable TLS 1.2 for this session in-case disabled on machine
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+if (-not (Get-PackageProvider -Name NuGet -ErrorAction SilentlyContinue)) {
+    #Enable TLS 1.2 for this session in-case disabled on machine
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-#Install NuGet Package Provider
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-#Install Package Provider Source
-Register-PackageSource -provider NuGet -name nugetRepository -location https://www.nuget.org/api/v2
+    #Install NuGet Package Provider
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+    #Install Package Provider Source
+    Register-PackageSource -provider NuGet -name Nuget -location https://www.nuget.org/api/v2
+}
+
 #Install Prerequisites for WinGet
-Install-Package Microsoft.UI.Xaml -Force
-
+Install-Package Microsoft.UI.Xaml -Force -RequiredVersion 2.6
 cinst files --cacheLocation="C:\temp"
