@@ -6,6 +6,8 @@ Please fork this repository, and modify the scripts to your liking if you want t
 
 ## Install Links
 
+NOTE - this doesn't work very well today due to boxstarter. Plan is to move to winget and scoop once I run my next install.
+
 ### Click [here](https://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1) to run the setup script.
 
 
