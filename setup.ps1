@@ -24,6 +24,9 @@ function executeScript {
 	iex ((new-object net.webclient).DownloadString("$helperUri/$script"))
 }
 
+# Choco temp dir
+mkdir C:\temp
+
 #--- Setting up Windows ---
 executeScript "SystemConfiguration.ps1";
 executeScript "Colemak.ps1";

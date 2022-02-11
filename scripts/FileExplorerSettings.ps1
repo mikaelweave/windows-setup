@@ -19,9 +19,9 @@ Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #Install NuGet Package Provider
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -ErrorAction SilentlyContinue)
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -ErrorAction SilentlyContinue
 #Install Package Provider Source
-Register-PackageSource -provider NuGet -name Nuget -location https://www.nuget.org/api/v2 -ErrorAction SilentlyContinue)
+Register-PackageSource -provider NuGet -name Nuget -location https://www.nuget.org/api/v2 -ErrorAction SilentlyContinue
 
 
 #Install Prerequisites for WinGet
