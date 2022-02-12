@@ -1,4 +1,7 @@
-cinst git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'" --cacheLocation="C:\temp"
+# Ensure proper version of GPG is first in path
+cinst gpg4win --cacheLocation="C:\temp"
+
+cinst git --package-parameters="'/GitOnPath /WindowsTerminal'" --cacheLocation="C:\temp"
 cinst python --cacheLocation="C:\temp"
 cinst nodejs.install --cacheLocation="C:\temp"
 
@@ -13,8 +16,6 @@ cinst azure-cli --cacheLocation="C:\temp"
 
 cinst sql-server-2019 --cacheLocation="C:\temp"
 cinst azure-cosmosdb-emulator --cacheLocation="C:\temp"
-
-cinst gpg4win --cacheLocation="C:\temp"
 
 # Pin items to the task bar
 Install-ChocolateyPinnedTaskBarItem "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
