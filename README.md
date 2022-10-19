@@ -1,20 +1,14 @@
 # Windows Setup
 
-Setting up a new computer for development and general use is a pain. Instead of spending days to get everything just right, why not just script it out? This repo uses [Chocolatey](https://chocolatey.org/) and [Boxstarter](https://boxstarter.org/) to provide an easy, quick, and **opinionated** computer setup that I use for all my Windows machines.
+Setting up a new computer for development and general use is a pain. Instead of spending days to get everything just right, why not just script it out? This repo uses winget to provide an easy, quick, and **opinionated** computer setup that I use for all my Windows machines.
 
 Please fork this repository, and modify the scripts to your liking if you want to use this approach yourself. There are some specialized setup in this, like the *colemak* keyboard layout.
 
-## Install Links
+## Install
 
-NOTE - this doesn't work very well today due to boxstarter. Plan is to move to winget and scoop once I run my next install.
-
-### Click [here](https://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1) to run the setup script.
-
-
-
-
-***
-
+```powershell
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1'))"
+```
 
 ## What does this script do?
 - Remove some default windows apps
@@ -32,17 +26,16 @@ NOTE - this doesn't work very well today due to boxstarter. Plan is to move to w
   - Azure CLI
   - SQL Server 2019 Developer
   - CosmosDB Emulator
+  - more...
 - Installs some Misc Apps
-  - Ditto Clipboard Manager
   - AutoHotKey (with some scripts)
   - Greenshot
   - ZoomIt
   - Dropbox
   - Notion
 - Installs Docker
-- Installs WSL with Ubuntu and Arch Linux distros
+- Installs WSL (you will need to install ubuntu)
   
-
 
 ## Resources
 - This repository was inspired by [windows-dev-box-setup-scripts](https://github.com/microsoft/windows-dev-box-setup-scripts).
