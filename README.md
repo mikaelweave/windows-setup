@@ -6,6 +6,8 @@ Please fork this repository, and modify the scripts to your liking if you want t
 
 ## Install
 
+Open a command prompt and run:
+
 ```powershell
 PowerShell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/mikaelweave/windows-setup/main/setup.ps1'))"
 ```
