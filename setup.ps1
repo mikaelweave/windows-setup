@@ -49,7 +49,8 @@ function WingetInstallFromList($apps)
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name "AllowDevelopmentWithoutDevLicense" -Value 1
 
 # Make windows clock play nice with Linux
-Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\TimeZoneInformation -Name "RealTimeIsUniversal" -Value 1 -Type "Dword"
+# Only do this if you are dual-booting with Linux and want to set the system clock to UTC.
+# Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\TimeZoneInformation -Name "RealTimeIsUniversal" -Value 1 -Type "Dword"
 
 
 ###########################
