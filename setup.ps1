@@ -15,28 +15,40 @@ if (-Not (Test-Path $FolderName))
 function WingetInstallFromList($apps)
 {
     Foreach ($app in $apps) {
+	
         if ($app.Contains("installSearchName"))
         {
-            $listApp = winget list --name $app.installSearchName
+	    Write-Host "Searching winget for app by name $($app.installSearchName)"
+            $listApp = winget list --name $app.installSearchName --accept-source-agreements --accept-package-agreements
             $checkName=$app.installSearchName
         }
         else
         {
-            $listApp = winget list --exact -q $app.name
+	    Write-Host "Searching winget for EXACT app by name $($app.name)"
+            $listApp = winget list --exact -q $app.name --accept-source-agreements --accept-package-agreements
             $checkName=$app.name
         }
+
+        Write-Host "Found $checkName"
         
         if (![String]::Join("", $listApp).Contains($checkName)) {
             Write-host "Installing:" $app.name
             if ($app.source -ne $null) {
-                winget install --exact --silent $app.name --source $app.source
+		$command = "winget install --exact --silent $($app.name) --source $($app.source)"
             }
             else {
-                winget install --exact --silent $app.name 
+                $command = "winget install --exact --silent $($app.name)"
             }
+
+	    $command += " --accept-source-agreements --accept-package-agreements"
+	    if ($app.Contains("additionalArgs")) {
+		$command += " $additionalArgs"
+	    }
+	    Invoke-Expression $command
+            
         }
         else {
-            Write-host "Skipping Install of " $app.name
+            Write-host "Skipping Install of $($app.name)..."
         }
     }
 }
@@ -60,22 +72,22 @@ Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelU
 #Install New apps
 Write-Output "Installing Dev Apps"
 $devApps = @(
-    @{name = "GnuPG.Gpg4win" },
+#    @{name = "GnuPG.Gpg4win" },
     @{name = "Python.Python.3.10"; installSearchName = "Python" },
     @{name = "OpenJS.NodeJS" },
     @{name = "Microsoft.AzureCLI" }, 
     @{name = "Microsoft.PowerShell" }, 
-    @{name = "Microsoft.VisualStudioCode" }, 
+    @{name = "Microsoft.VisualStudioCode"; additionalArgs = "--override '/SILENT /mergetasks=`"!runcode,addcontextmenufiles,addcontextmenufolders`"'" }, 
     @{name = "Microsoft.AzureStorageExplorer" }, 
     @{name = "Microsoft.PowerToys" }, 
     @{name = "Git.Git" }, 
-    @{name = "Docker.DockerDesktop" },
-    @{name = "dotnet-sdk-6" },
-    @{name = "aspnetcore-6" },
+#    @{name = "Docker.DockerDesktop" },
+    @{name = "dotnet-sdk-7" },
+    @{name = "aspnetcore-7" },
     @{name = "GitHub.cli" },
     @{name = "mcmilk.7zip-zstd" },
     @{name = "Postman.Postman" },
-    @{name = "Microsoft.SQLServer.2019.Developer"; installSearchName = "Microsoft SQL Server 2019" },
+    @{name = "Microsoft.SQLServer.2019.Developer" },
     @{name = "Microsoft.AzureCosmosEmulator" },
     @{name = "Microsoft.VisualStudio.2022.Enterprise-Preview" }
 );
@@ -89,17 +101,17 @@ WingetInstallFromList($devApps)
 #Install New apps
 Write-Output "Installing Misc. Apps"
 
-$miscApps = @(
-    @{name = "Lexikos.AutoHotkey" },
-    @{name = "Google.Chrome" },
-    @{name = "Greenshot.Greenshot"; installSearchName = "Greenshot" },
-    @{name = "wandersick.AeroZoom" },
-    @{name = "Dropbox.Dropbox"; installSearchName = "Dropbox" },
-    @{name = "Notion.Notion"; installSearchName = "Notion" },
-    @{name = "Agilebits.1Password" }
-);
+#$miscApps = @(
+#    @{name = "Lexikos.AutoHotkey" },
+#    @{name = "Google.Chrome" },
+#    @{name = "Greenshot.Greenshot"; installSearchName = "Greenshot" },
+#    @{name = "wandersick.AeroZoom" },
+#    @{name = "Dropbox.Dropbox"; installSearchName = "Dropbox" },
+#    @{name = "Notion.Notion"; installSearchName = "Notion" },
+#    @{name = "Agilebits.1Password" }
+#);
 
-WingetInstallFromList($miscApps)
+# WingetInstallFromList($miscApps)
 
 ###########################
 #### Colemak
@@ -134,7 +146,7 @@ switch ($result) {
 
 #--- Windows Features ---
 # Show hidden files, Show protected OS files, Show file extensions
-# Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
 
 #--- File Explorer Settings ---
 # will expand explorer to the actual folder you're in
